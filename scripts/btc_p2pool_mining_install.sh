@@ -265,7 +265,7 @@ read -p "ATTENTION: Please enter A valid BITCOIN WALLET Address? [${1}] This is 
 echo "Ok: $MyWallet"
 
 
-cat > ${myinstalloc}/${SUBject}/p2pool.sh << EOF
+cat > ${myinstalloc}/${SUBject}/p2pool/p2pool.sh << EOF
 #!/bin/bash
 P=`pwd`
 P2POOL_DIR=${P}/p2pool
@@ -294,6 +294,7 @@ else
         fi
 fi
 EOF
+chmod a+x ${myinstalloc}/${SUBject}/p2pool/p2pool.sh
 
 return 0
 }
