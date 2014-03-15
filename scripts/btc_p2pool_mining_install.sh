@@ -268,14 +268,12 @@ echo "Ok: $MyWallet"
 cat > ${myinstalloc}/${SUBject}/p2pool/p2pool.sh << EOF
 #!/bin/bash
 P=`pwd`
-P2POOL_DIR=${P}/p2pool
 
 rpcuser=`grep "^rpcuser" \${HOME}/.bitcoin/bitcoin.conf | cut -d'=' -f2`
 rpcpassword=`grep "^rpcpassword" \${HOME}/.bitcoin/bitcoin.conf | cut -d'=' -f2`
 
 EXISTINGPID=`pgrep -f run_p2pool.py`
 
-cd $P2POOL_DIR
 if git pull | grep -q 'Already up-to-date'; then
         if [[ ! -z "\$EXISTINGPID" ]]; then
                 echo "No restart needed for p2pool"
