@@ -1,0 +1,41 @@
+
+backtitle="Knary -- [$VERSION]"
+
+ids=`id|sed -e 's/([^)]*)//g'`
+uid=`echo "$ids" | sed -e 's/^uid=//' -e 's/ .*//'`
+gid=`echo "$ids" | sed -e 's/^.* gid=//' -e 's/ .*//'`
+
+user="$USER"
+home="$HOME"
+
+if [ ! "$UID" -eq 0 ];then
+	log "Inform: [$USER] is starting as UID [$UID]."
+	MySudoCom="sudo "
+else
+	log "Inform: [$USER] is starting as ROOT [$UID]."
+	MYSudoCom=""
+fi
+
+MyBIT=`uname -m`
+if [[ ${MyBIT} =~ x86_64 ]];then
+	log "Inform: BIG Endian."
+	MyBIT=64
+elif [[ ${MyBIT} =~ i*86 ]];then
+	log "Inform: Little Endian."
+	MyBIT=32
+fi
+
+if [ -f "/etc/debian_version" ];then
+	OSDist=`cat /etc/debian_version`
+	MyOS=debian
+	MyInstaller=${MySudoCom}'apt-get -y'
+	MyAddRepo=${MySudoCom}'add-apt-repository'
+	log "Inform: [${UN}] I am a Debian or Clone."
+fi
+if [ -f "/etc/redhat-release" ];then
+	OSDist=`cat /etc/redhat-release` 
+	MyOS=redhat
+	MyInstaller=${MySudoCom}'yum -y'
+	MyAddRepo=${MySudoCom}'yum-config-manager --add-repo'
+	log "Inform: [${UN}] I am a RedHat or Clone."
+fi

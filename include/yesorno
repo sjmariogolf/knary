@@ -1,0 +1,16 @@
+yesorno()
+{
+
+docan=${2}
+
+while true; do
+    read -p "Please enter Y/N ${1}? (y/n)" yn
+    case $yn in
+        [Yy]* ) ${1};break;;
+        [Nn]* ) echo "Ok"; ${docan};;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+return 0
+}

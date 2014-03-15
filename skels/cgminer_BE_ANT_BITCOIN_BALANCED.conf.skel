@@ -1,0 +1,26 @@
+{
+"pools" : [
+        {
+                "url" : "http://stratum+tcp//us2.eclipsemc.com:3333",
+                "user" : "sjmariogolf_1",
+                "pass" : "peeb"
+        },
+        {
+                "url" : "http://stratum+tcp//stratum.bitcoin.cz:3333",
+                "user" : "sjmariogolf.1",
+                "pass" : "peeb"
+        }
+]
+,
+"api-mcast-port" : "4028",
+"api-port" : "4028",
+"expiry" : "120",
+"hotplug" : "5",
+"log" : "5",
+"no-pool-disable" : true,
+"queue" : "1",
+"scan-time" : "60",
+"shares" : "0",
+"balance" : true,
+"kernel-path" : "/usr/local/bin"
+}

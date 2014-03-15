@@ -1,0 +1,31 @@
+report-button()
+{
+
+retval=${1};doexec=${2};dook=${3};docan=${4}
+
+case $retval in
+  $DIALOG_OK)
+    echo "OK";;
+  $DIALOG_CANCEL)
+	retval=1
+	log "Cancel pressed. ${docan},${0}"
+	clear
+	${P}/${docan}
+	exit;;
+  $DIALOG_HELP)
+    echo "Help pressed.";;
+  $DIALOG_EXTRA)
+    echo "Extra button pressed.";;
+  $DIALOG_ITEM_HELP)
+    echo "Item-help button pressed.";;
+  $DIALOG_ERROR)
+    echo "ERROR!";;
+  $DIALOG_ESC)
+    echo "ESC pressed."
+    kill $PPID
+    kill $$
+    exit;;
+esac
+
+return 0
+}

@@ -1,0 +1,10 @@
+{
+	"url" : "stratum+tcp://freedom.wemineltc.com:3339",
+	"user" : "sjmariogolf.1",
+	"pass" : "peeb",
+
+	"algo" : "scrypt",
+	"threads" : "4",
+
+	"quiet" : true
+}

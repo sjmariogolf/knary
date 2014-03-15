@@ -1,0 +1,4 @@
+mylogfile=./var/log/knary_syslog
+touch ${mylogfile};chmod 777 ${mylogfile}
+tempfile=`tempfile 2>/dev/null` || tempfile=/tmp/test$$
+trap "echo house-keeping;rm -f $tempfilr" EXIT

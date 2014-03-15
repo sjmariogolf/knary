@@ -1,0 +1,73 @@
+report-menu()
+{
+
+retval=${1};doexec=${2};dook=${3};docan=${4};doout=${5}
+log "Inform: retval ${1},doexec ${2} dook ${3},docan ${4},doout ${5}"
+
+mytemp=`cat $tempfile`
+mynavigate=`echo ${mytemp} | tr '[:upper:]' '[:lower:]'`
+
+case $retval in
+  $DIALOG_OK)
+	echo "Result: `cat $tempfile`"
+	case ${mynavigate} in
+		cancel)
+			retval=1
+			log "Cancel pressed. ${docan},${0}"
+			clear
+			${P}/${docan}
+			kill -KILL ${PPID} 2> /dev/null 1>&2
+			exit
+		;;
+		quit|return)
+			log "Inform: Returning to [${docan}]"
+			${P}/${docan}
+			kill -KILL ${PPID} 2> /dev/null 1>&2
+		;;
+		cpu-mining|bfg-mining|gpu-mining|asics-mining|bitcoin|litecoin|stratum|solo-p2pool|misc)
+			${P}/scripts/main_${mynavigate}.sh 
+		;;
+		cpu-configure|bfg-configure|cgm-configure|slush0-configure|bitcoin-configure|litecoin-configure)
+			${P}/scripts/sub_${mynavigate}.sh 
+		;;
+		cpu-install|bfg-install|cgm-install|slush0-install|amd-install|bitcoin-install|litecoin-install|p2pool-bitcoin|solo-bitcoin)
+			${P}/scripts/sub_${mynavigate}.sh 
+		;;
+		list-hardware)
+			${P}/scripts/sub_${mynavigate}.sh 
+		;;
+		*)
+			log "Oops ... ${mynavigate}"
+			exit
+		;;
+
+
+	esac
+	;;
+
+  $DIALOG_CANCEL)
+        echo "Cancel pressed."
+	log "Cancel pressed. ${docan},${0}"
+	clear
+	${P}/${docan}
+	kill -KILL ${PPID} 2> /dev/null 1>&2
+        exit;;
+  $DIALOG_HELP)
+    echo "Help pressed.";;
+  $DIALOG_EXTRA)
+    echo "Extra button pressed.";;
+  $DIALOG_ITEM_HELP)
+    echo "Item-help button pressed.";;
+  $DIALOG_ESC)
+    if test -s $tempfile ; then
+      cat $tempfile
+    else
+      echo "ESC pressed."
+      ${P}/${docan}
+    fi
+    ;;
+esac
+
+return 0
+}
+

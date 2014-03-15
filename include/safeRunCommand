@@ -1,0 +1,12 @@
+safeRunCommand() {
+   cmnd=$1
+
+   $cmnd
+
+   if [ $? != 0 ]; then
+	result=1
+   else
+	result=0
+   fi
+return $result
+}

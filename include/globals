@@ -1,0 +1,13 @@
+#
+# Take care changing me
+#
+p=`pwd`
+pp=`cat ./data/ENTRY`
+if [ ! "${p}" = "${pp}" ];then
+	unset pp
+	rm -f ./data/ENTRY
+fi
+P=${pp:-"${p}"}
+UN=`uname -a`
+sleep=2
+DEBUG=1

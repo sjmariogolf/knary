@@ -1,0 +1,1 @@
+btc_solo_mining_install.sh

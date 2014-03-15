@@ -1,0 +1,66 @@
+report-tempfile()
+{
+
+retval=${1};doexec=${2};dook=${3};docan=${4};doout=${5};doexecscript=${6}
+log "Inform: retval ${1},doexec ${2},dook ${3},docan ${4},doout ${5},doexecscript ${6}"
+
+doexecscript="${P}/temp/${doexecscript}.sh"
+doexecbname=`basename ${doexecscript}`
+
+rm -f "${P}/results/${doexecbname}_`date +%b%d%Y`_results.txt"
+
+if [[ "${doexec}" =~ "apt-get" ]]; then
+	doexec="${doexec}"
+fi
+if [[ "${doexec}" =~ "yum" ]]; then
+	doexec="${doexec}"
+fi
+if [ "$(whoami)" != "root" ]; then
+	log "Inform: Switching [${doexec}] over to [sudo ${doexec}] for [$(whoami)]."
+	doexec='sudo '${doexec}
+fi
+case $retval in
+  $DIALOG_OK)
+	cat /dev/null > ${doexecscript}
+	while read Run
+	do 
+		echo "echo \"--- ${doexec} ${Run} ---\"" >> ${doexecscript}
+		if [ "${doout}" = "0" ];then
+			echo "${doexec} ${Run}" >> ${doexecscript}
+		else
+			echo "${doexec} ${Run} | tee ${P}/results/${doexecbname}_`date +%b%d%Y`_results.txt" >> ${doexecscript}
+			#echo "${doexec} ${Run} >> ${P}/results/${doexecbname}_`date +%b%d%Y`_results.txt" >> ${doexecscript}
+			echo >> ${doexecscript}
+		fi
+	done < $tempfile
+	chmod a+x ${doexecscript}
+	${doexecscript}	
+	sleep ${sleep}
+	;;
+  $DIALOG_CANCEL)
+	retval=1
+        log "Cancel pressed. ${docan},${0}"
+	clear
+	${P}/${docan}
+        exit;;
+  $DIALOG_HELP)
+    echo "Help pressed.";;
+  $DIALOG_EXTRA)
+    echo "Extra button pressed.";;
+  $DIALOG_ITEM_HELP)
+    echo "Item-help button pressed.";;
+  $DIALOG_ESC)
+    if test -s $tempfile ; then
+      cat $tempfile
+    else
+      echo "ESC pressed."
+      kill $PPID
+      kill $$
+      clear
+      exit
+    fi
+    ;;
+esac
+
+return 0
+}

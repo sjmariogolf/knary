@@ -1,0 +1,10 @@
+{
+"_comment1" : "https://eclipsemc.com",
+
+"url" :  "stratum+tcp://us1.eclipsemc.com:3333",
+"user" : "sjmariogol.1",
+"pass" : "peeb",
+
+"algo" : "sha256d",
+"threads" : "2"
+}

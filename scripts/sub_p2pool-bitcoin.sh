@@ -1,0 +1,1 @@
+btc_p2pool_mining_install.sh

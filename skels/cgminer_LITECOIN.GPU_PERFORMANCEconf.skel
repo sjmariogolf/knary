@@ -1,0 +1,51 @@
+{
+"pools" : [
+        {
+                "url" : "stratum+tcp://us.ltcrabbit.com:3334",
+                "user" : "sjmariogolf.rabbit",
+                "pass" : "peeb"
+        }
+,
+
+	{
+		"url" : "stratum+tcp://ltcpool.coinrelay.com:3333",
+		"user" : "sjmariogolf.1",
+		"pass" : "peeb"
+	}
+]
+,
+"balance" : true,
+"intensity" : "19,19",
+"vectors" : "1,1",
+"worksize" : "256,256",
+"lookup-gap" : "2,2",
+"thread-concurrency" : "4096,21560",
+"shaders" : "0,0",
+"gpu-engine" : "1080-1080,1080-1080",
+"gpu-fan" : "30-75,30-75",
+"gpu-memclock" : "1480,1480",
+"gpu-memdiff" : "0,0",
+"gpu-powertune" : "-10,-10",
+"gpu-vddc" : "0.000,0.000",
+"temp-cutoff" : "90,90",
+"temp-overheat" : "85,85",
+"temp-target" : "72,72",
+"api-listen" : true,
+"api-mcast-port" : "4028",
+"api-port" : "4028",
+"auto-fan" : true,
+"expiry" : "1",
+"gpu-dyninterval" : "7",
+"gpu-platform" : "0",
+"gpu-threads" : "1",
+"log" : "5",
+"no-pool-disable" : true,
+"no-submit-stale" : true,
+"queue" : "0",
+"scan-time" : "1",
+"scrypt" : true,
+"temp-hysteresis" : "3",
+"shares" : "0",
+"kernel-path" : "/usr/local/bin",
+"api-allow" : "W:127.0.0.1"
+}
