@@ -22,7 +22,7 @@ log "Inform:Installing::MAIN. Start."
 $DIALOG --default-item "CPU-MINING" --clear --title "{Knary} Mining Setup Menu Box" "$@" \
         --menu "Main Menu\
 	\nThis is the Main Menu.\
-	\nPlease make choose from the options available below.\
+	\nPlease choose from the available options below.\
 	\nUse the UP/DOWN arrow keys, the first letter of the choice as a hot key, or the number keys 1-9 to choose an option.\
         \nChoose from the List Below:" 25 75 10 \
         "QUIT"  	"This is the TOP LEVEL menu. <QUIT/Cancel> will exit."\
