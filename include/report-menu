@@ -33,7 +33,7 @@ case $retval in
 		cpu-install|bfg-install|cgm-install|slush0-install|amd-install|bitcoin-install|litecoin-install|p2pool-bitcoin|solo-bitcoin)
 			${P}/scripts/sub_${mynavigate}.sh 
 		;;
-		list-hardware)
+		list-hardware|bitcoin-tools|litecoin-tools)
 			${P}/scripts/sub_${mynavigate}.sh 
 		;;
 		*)
