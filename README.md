@@ -22,11 +22,17 @@ Installation notes for the impatient:)
 
 =====================================================================
 Download the Ubuntu 12.10 Server LiveCD.
+
 Install Ubuntu 12.10. "http://releases.ubuntu.com/12.10/"
+
 For GPU ... "sudo apt-get install tasksel;tasksel" # Choose a desktop
+
 Login to Linux and cd $HOME
+
 git clone https://github.com/sjmariogolf/knary.git
+
 cd knary
+
 ./knary_execution.sh
 =====================================================================
 
