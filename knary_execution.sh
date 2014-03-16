@@ -68,4 +68,5 @@ read -p "Hit ENTER to continue..." ; echo "Ok"
 
 ${P}/scripts/main_menu.sh
 
+clear
 exit 0
