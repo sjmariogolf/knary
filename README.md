@@ -14,35 +14,27 @@ https://github.com/sjmariogolf/knary.git
 
 This is a complete installation, configuration and execution scripting environment for cryptocoin minin rigs.
 
+It is a complete "rig" Automation application written in SHELL for read ability and reuse. It utilizes "dialog" as a
+Command User Interface. This application was written as a mechanism to quickly setup mining rigs from bare metal Linux
+Installations. It includes support for cpuminer, bfgminer, cgminer ASICs, cgminer GPU, bitcoin and litecoin daemons and clients, P2Pool, and SOLO Mining.
+
 The directory structure
 Following is the basic directory structure for the application.  Below is a detailed functional explanation specific to each of the directoies.
 
 
-knary 			The Knary top level directory
-
+knary 			      The Knary top level directory
 knary/include 		The Knary Include files
-
 knary/var/log 		Logging
-
 knary/results 		Results files from Installations
-
 knary/scripts 		The Scripts directory
-
-knary/doc 			Documents README LICENSE
-
-knary/exec		The Executable top level
-
-knary/skels		Skeletal Configurations for executables 
-
-knary/git 			git files
-
+knary/doc 			  Documents README LICENSE
+knary/exec		    The Executable top level
+knary/skels		    Skeletal Configurations for executables 
+knary/git 			  git files
 knary/downloads 	A directory for download storage
-
-knary/data 		Data and directory information
-
-knary/temp 		Temporary storage
-
-knary/config 		Private configuration specific to Knary
+knary/data 		    Data and directory information
+knary/temp 	  	  Temporary storage
+knary/config 	  	Private configuration specific to Knary
 
 
 knary is the top level directory of the application. Normally this directory will be extracted or otherwise downloaded into the $HOME of your UNIX login. For example /home/unixuser. With knary extracted to /home/unixuser/knary. Change directory into the knary top level directory to start the application by entering this command: ./knary_execution.sh.
