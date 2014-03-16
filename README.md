@@ -14,9 +14,7 @@ https://github.com/sjmariogolf/knary.git
 
 This is a complete installation, configuration and execution scripting environment for cryptocoin minin rigs.
 
-It is a complete "rig" Automation application written in SHELL for read ability and reuse. It utilizes "dialog" as a
-Command User Interface. This application was written as a mechanism to quickly setup mining rigs from bare metal Linux
-Installations. It includes support for cpuminer, bfgminer, cgminer ASICs, cgminer GPU, bitcoin and litecoin daemons and clients, P2Pool, and SOLO Mining.
+It is a complete "rig" Automation application written in SHELL for ease of read, extendability and reuse. It utilizes "dialog" as a Command User Interface. This application was written as a mechanism to quickly setup mining rigs from bare metal Linux Installations. It includes support for cpuminer, bfgminer, cgminer ASICs, cgminer GPU, bitcoin and litecoin daemons and clients, P2Pool, and SOLO Mining.
 
 The directory structure
 Following is the basic directory structure for the application.  Below is a detailed functional explanation specific to each of the directoies.
