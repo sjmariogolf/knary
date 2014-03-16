@@ -8,9 +8,11 @@ knary_execution.sh
 
 The MAIN entry to the Knary application. Execute this script as ./knary_execution.sh to invoke the app.
 
-Currently this is a work in beta.
+Currently this is a work in beta testing.
 
 https://github.com/sjmariogolf/knary.git
+
+git clone https://github.com/sjmariogolf/knary.git
 
 This is a complete installation, configuration and execution scripting environment for cryptocoin minin rigs.
 
