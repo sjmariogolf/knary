@@ -16,6 +16,20 @@ git clone https://github.com/sjmariogolf/knary.git
 
 This is a complete installation, configuration and execution scripting environment for cryptocoin minin rigs.
 
+Tested with Debian, Ubuntu, and CentOS Server and Desktop. Ubuntu 12.10 Server/Desktop has additionally been tested for longevity without problems, and for this reason only, it is the authors recommended Distribution.
+
+Installation notes for the impatient:)
+
+=====================================================================
+Download the Ubuntu 12.10 Server LiveCD.
+Install Ubuntu 12.10. "http://releases.ubuntu.com/12.10/"
+For GPU ... "sudo apt-get install tasksel;tasksel" # Choose a desktop
+Login to Linux and cd $HOME
+git clone https://github.com/sjmariogolf/knary.git
+cd knary
+./knary_execution.sh
+=====================================================================
+
 It is a complete "rig" Automation application written in SHELL for ease of read, extendability and reuse. It utilizes "dialog" as a Command User Interface. This application was written as a mechanism to quickly setup mining rigs from bare metal Linux Installations. It includes support for cpuminer, bfgminer, cgminer ASICs, cgminer GPU, bitcoin and litecoin daemons and clients, P2Pool, and SOLO Mining.
 
 The directory structure
