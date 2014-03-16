@@ -9,10 +9,10 @@
 #bash_version   :4.2.45(1)-release
 #============================================================================
 
-p=`pwd`
 SUBject="solo-bitcoin"
 INSTLOC=`echo ${SUBject} | tr '[:lower:]' '[:upper:]'`
 RETURN="scripts/main_solo-p2pool"
+p=`pwd`
 
 clear
 stty sane
@@ -62,7 +62,7 @@ runyesorno(){
 
 if [ "${1}" ] ; then
 	yesorno="n"
-	read -p "Inform: Would you like to run this step? [\"${3}\"] Enter y/n (n)? " yesorno
+	read -p "Inform: Would you like to run theis step? [\"${3}\"] Enter y/n (n)? " yesorno
 		case "$yesorno" in
 	y*|Y*)  ${1} ${2};;
 		n*|N*)  echo "Skipped";;
@@ -203,6 +203,7 @@ if [ "${OverW}" = "yes" ];then
 	MyBCPasswd=`uuidgen -r`
 	echo "Inform: Creating the initial [\"${HOME}/.bitcoin/bitcoin.conf\"] configuration file."
 	cat << EOF > ${HOME}/.bitcoin/bitcoin.conf
+gen=1
 server=1
 rpcport=8332
 rpctimeout=30
@@ -254,6 +255,11 @@ git clone https://github.com/generalfault/stratum-mining.git
 ${MySudoCom}/usr/bin/easy_install-2.7 -U distribute
 ${MySudoCom}/usr/bin/easy_install-2.7 stratum
 ${MySudoCom}/usr/bin/easy_install-2.7 simplejson
+
+# TWISTED https://github.com/Crypto-Expert/stratum-mining/issues/90
+${MySudoCom}sudo cp /usr/local/lib/python2.7/dist-packages/stratum-0.2.15-py2.7.egg/stratum/websocket_transport.py /usr/local/lib/python2.7/dist-packages/stratum-0.2.15-py2.7.egg/stratum/websocket_transport.py.bu.`date +%B%d%Y`
+${MySudoCom}sed -i "s/from autobahn.websocket import/from autobahn.twisted.websocket import/" /usr/local/lib/python2.7/dist-packages/stratum-0.2.15-py2.7.egg/stratum/websocket_transport.py
+
 
 return 0
 }
@@ -316,7 +322,7 @@ USERS_AUTOADD = True		# Automatically add users to db when they connect.
 				# 	This basically disables User Auth for the pool.
 USERS_CHECK_PASSWORD = False	# Check the workers password? (Many pools don't)
 COINBASE_EXTRAS = '/stratumPool/'			# Extra Descriptive String to incorporate in solved blocks
-ALLOW_NONLOCAL_WALLET = False				# Allow valid, but NON-Local wallet's
+ALLOW_NONLOCAL_WALLET = True				# Allow valid, but NON-Local wallet's
 PREVHASH_REFRESH_INTERVAL = 5 	# How often to check for new Blocks
 				#	If using the blocknotify script (recommended) set = to MERKLE_REFRESH_INTERVAL
 				#	(No reason to poll if we're getting pushed notifications)
@@ -404,6 +410,27 @@ sed -i "s/#ADMIN_HASH#/${MyAdminHash}/g" ${myinstalloc}/${SUBject}/stratum-minin
 return 0
 }
 
+block_notify(){
+
+log "Inform: Setting up block notify."
+
+rpcuser=`grep "^rpcuser" ${HOME}/.bitcoin/bitcoin.conf | cut -d'=' -f2`
+rpcpassword=`grep "^rpcpassword" ${HOME}/.bitcoin/bitcoin.conf | cut -d'=' -f2`
+
+${myinstalloc}/${SUBject}/stratum-mining/scripts/blocknotify.sh --password $rpcpassword --host localhost --port 3333
+
+echo "Info: Restarting the bitcoind."
+${MySudoCom}bitcoind stop;sleep 10;${MySudoCom}bitcoind stop 2>/dev/null 1>&2
+bitcoind -blocknotify="${myinstalloc}/${SUBject}/stratum-mining/scripts/blocknotify.sh --password $rpcpassword --host localhost --port 3333" -daemon
+echo "Info: Resting for 30 seconds."
+sleep 30
+echo "Info: Attempt to communicate."
+ps -ef | grep bitcoind
+bitcoind getinfo
+
+return 0
+}
+
 runyesorno install_bitcoin 1 	"Install the Bitcoin daemon."	|| exit 1
 runyesorno create_bitcoin_conf 2	"Create the Bitcoin config file." || exit 1
 runyesorno start_bitcoind 3	"Start the Bitcoin daemon."	|| exit 1
@@ -413,6 +440,7 @@ runyesorno write_startup_script 6 "Write the startup script." || exit 1
 runyesorno create_config_py 7 "Create the config.py config file." 	|| exit 1
 runyesorno generate_random_hash 8  "Generate a random hash password."|| exit 1
 runyesorno start_solo 9	"Start the SOLO Miner." 		|| exit 1
+runyesorno block_notify 10	"Setup the stratum for block notifications." 		|| exit 1
 
 echo "Exiting ..."
 read -p "Hit ENTER to continue..." ; echo "Ok"
