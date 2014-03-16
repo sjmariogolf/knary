@@ -62,7 +62,7 @@ runyesorno(){
 
 if [ "${1}" ] ; then
 	yesorno="n"
-	read -p "Inform: Would you like to run theis step? [\"${3}\"] Enter y/n (n)? " yesorno
+	read -p "Inform: Would you like to run this step? [\"${3}\"] Enter y/n (n)? " yesorno
 		case "$yesorno" in
 	y*|Y*)  ${1} ${2};;
 		n*|N*)  echo "Skipped";;
