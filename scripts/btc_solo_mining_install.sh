@@ -417,19 +417,28 @@ log "Inform: Setting up block notify."
 rpcuser=`grep "^rpcuser" ${HOME}/.bitcoin/bitcoin.conf | cut -d'=' -f2`
 rpcpassword=`grep "^rpcpassword" ${HOME}/.bitcoin/bitcoin.conf | cut -d'=' -f2`
 
+echo "Inform: ${myinstalloc}/${SUBject}/stratum-mining/scripts/blocknotify.sh --password $rpcpassword --host localhost --port 3333"
 ${myinstalloc}/${SUBject}/stratum-mining/scripts/blocknotify.sh --password $rpcpassword --host localhost --port 3333
 
-echo "Info: Restarting the bitcoind."
+echo "Inform: Restarting the bitcoind."
 ${MySudoCom}bitcoind stop;sleep 10;${MySudoCom}bitcoind stop 2>/dev/null 1>&2
+echo "Inform: bitcoind -blocknotify=\"${myinstalloc}/${SUBject}/stratum-mining/scripts/blocknotify.sh --password $rpcpassword --host localhost --port 3333\" -daemon"
 bitcoind -blocknotify="${myinstalloc}/${SUBject}/stratum-mining/scripts/blocknotify.sh --password $rpcpassword --host localhost --port 3333" -daemon
-echo "Info: Resting for 30 seconds."
-sleep 30
-echo "Info: Attempt to communicate."
+echo "Inform: Waiting for bitcoin. Please wait 60 seconds."
+
+for i in {0..60..1}
+  do
+        echo -n "Pausing for [$i] seconds"
+        sleep 1
+done
+
+echo "Inform: Attempt to communicate. The daemon may still be starting. Check the debug.log in the .bitcoin directory."
 ps -ef | grep bitcoind
 bitcoind getinfo
 
 return 0
 }
+
 
 runyesorno install_bitcoin 1 	"Install the Bitcoin daemon."	|| exit 1
 runyesorno create_bitcoin_conf 2	"Create the Bitcoin config file." || exit 1
