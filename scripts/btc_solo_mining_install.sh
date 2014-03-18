@@ -428,6 +428,7 @@ echo "Inform: Waiting for bitcoin. Please wait 60 seconds."
 
 for i in {0..60..1}
   do
+        clear
         echo -n "Pausing for [$i] seconds"
         sleep 1
 done
