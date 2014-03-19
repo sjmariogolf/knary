@@ -428,11 +428,13 @@ rpcuser=`grep "^rpcuser" ${HOME}/.bitcoin/bitcoin.conf | cut -d'=' -f2`
 rpcpassword=`grep "^rpcpassword" ${HOME}/.bitcoin/bitcoin.conf | cut -d'=' -f2`
 
 echo "Inform: ${myinstalloc}/${SUBject}/stratum-mining/scripts/blocknotify.sh --password $rpcpassword --host localhost --port 3333"
+echo "${myinstalloc}/${SUBject}/stratum-mining/scripts/blocknotify.sh --password $rpcpassword --host localhost --port 3333" > ${myinstalloc}/${SUBject}/stratum-mining/start_block_notify.sh;chmod a+x ${myinstalloc}/${SUBject}/stratum-mining/start_block_notify.sh
 ${myinstalloc}/${SUBject}/stratum-mining/scripts/blocknotify.sh --password $rpcpassword --host localhost --port 3333
 
 echo "Inform: Restarting the bitcoind."
 ${MySudoCom}bitcoind stop;sleep 10;${MySudoCom}bitcoind stop 2>/dev/null 1>&2
 echo "Inform: bitcoind -blocknotify=\"${myinstalloc}/${SUBject}/stratum-mining/scripts/blocknotify.sh --password $rpcpassword --host localhost --port 3333\" -daemon"
+echo "bitcoind -blocknotify=\"${myinstalloc}/${SUBject}/stratum-mining/scripts/blocknotify.sh --password $rpcpassword --host localhost --port 3333\" -daemon" > ${myinstalloc}/${SUBject}/stratum-mining/start_bitcoind_with_blocknotify.sh;chmod a+x ${myinstalloc}/${SUBject}/stratum-mining/start_bitcoind_with_blocknotify.sh
 bitcoind -blocknotify="${myinstalloc}/${SUBject}/stratum-mining/scripts/blocknotify.sh --password $rpcpassword --host localhost --port 3333" -daemon
 echo "Inform: Waiting for bitcoin. Please wait 60 seconds."
 
