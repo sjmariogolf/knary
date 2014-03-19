@@ -1,7 +1,17 @@
 #
 # logging
 #
-mylogfile="${HOME}/knary/var/log/knary_syslog"
+
+if [ -d ../scripts  ];then
+        mylogfile="../var/log/knary_syslog"
+        mkdir -p ../var/log 2>/dev/null 1>&2
+elif [ -d ../knary ];then
+        mylogfile="./var/log/knary_syslog"
+        mkdir -p ./var/log 2>/dev/null 1>&2
+else
+        mylogfile="./knary_syslog"
+fi
+
 
 log()
 {
