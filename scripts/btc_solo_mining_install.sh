@@ -166,7 +166,7 @@ else
 	log "Inform: Ok, we are running on a Debian clone [`uname -m`]. Proceed."
 fi
 log "Inform: This is a rather long and tedious undertaking. Please be patient..."
-echo "Inform: The very first thing we must do is to make certain we have the Bitcoin Daemon Installed and operational." 
+echo "Inform: The very first thing we must do is to make certain we have the Proper Tools Installed and Operational." 
 
 R=`dpkg-query -l aptitude`
 if [ ! $? = 0 ];then
