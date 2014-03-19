@@ -8,6 +8,7 @@
 # https://developer.nvidia.com/cuda-pre-production
 
 #
+# sudo apt-get install ocl-icd-opencl-dev
 # Download, ;ctl+alt+f1; chmod a+x *run; /etc/init.d/lightdm stop; run the installs.
 # Add PATH to ~/.bashrc; then LD_LIBRARY_PATH, may use /etc/ld.conf file
 # cat /etc/ld.so.conf
