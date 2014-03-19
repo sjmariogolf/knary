@@ -149,8 +149,12 @@ fi
 log "Inform: This is a rather long and tedious undertaking. Please be patient..."
 echo "Inform: The very first thing we must do is to make certain we have the Bitcoin Daemon Installed and operational." 
 
-dpkg-query -l aptitude 2> /dev/null 1>&2
+R=`dpkg-query -l aptitude`
 if [ ! $? = 0 ];then
+        echo "Inform: installing aptitude..."
+        ${MySudoCom}apt-get -y install aptitude
+fi
+if [[ $R =~ "Unknown" ]];then
         echo "Inform: installing aptitude..."
         ${MySudoCom}apt-get -y install aptitude
 fi
