@@ -93,5 +93,5 @@ echo "Testing ..."
 bitcoind -daemon
 read -p "Hit ENTER to continue..." ; echo "Ok"
 sleep 5
-bitcoind stop
+#-- bitcoind stop
 cd ${P};${P}/${RETURN}.sh
