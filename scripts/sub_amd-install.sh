@@ -191,6 +191,9 @@ cd ${myinstalloc}
 
 if [ "$retval" = "0" ];then
 	cd ${myinstalloc}
+	if [ -d "${myinstalloc}" ];then
+		${MySudoCom}rm -f ${myinstalloc}/*
+	fi
 	${MySudoCom}mv ${HOME}/Downloads/${AMDSDK} ${myinstalloc}
 	${MySudoCom}tar zxvf ${AMDSDK}
 	${MySudoCom}tar zxvf icd-registration.tgz
