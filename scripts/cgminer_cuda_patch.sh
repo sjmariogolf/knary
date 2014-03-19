@@ -26,21 +26,6 @@
 #cgminer 3.7.2
 #------------------------------------------------------------------------
 
-#!/bin/bash
-# sudo apt-get update
-# sudo apt-get install gcc
-# wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1204/x86_64/cuda-repo-ubuntu1204_5.5-0_amd64.deb
-# sudo dpkg -i cuda-repo-ubuntu1204_5.5-0_amd64.deb
-# sudo apt-get update
-# sudo apt-get install cuda
-# export PATH=/usr/local/cuda-5.5/bin:$PATH
-# export LD_LIBRARY_PATH=/usr/local/cuda-5.5/lib64:$LD_LIBRARY_PATH
-# sudo apt-get install opencl-headers python-pip python-dev python-numpy python-mako
-# wget https://pypi.python.org/packages/source/p/pyopencl/pyopencl-2013.1.tar.gz#md5=c506e4ec5bc56ad85bf005ec40d4783b
-# tar -vxzf pyopencl-2013.1.tar.gz
-# cd pyopencl-2013.1
-# sudo python setup.py install
-
 #Configuration Options Summary:
 
 #  libcurl(GBT+getwork).: Enabled: -lcurl  
