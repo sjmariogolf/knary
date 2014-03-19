@@ -27,10 +27,10 @@ case $retval in
 		cpu-mining|bfg-mining|gpu-mining|asics-mining|bitcoin|litecoin|stratum|solo-p2pool|misc)
 			${P}/scripts/main_${mynavigate}.sh 
 		;;
-		cpu-configure|bfg-configure|cgm-configure|slush0-configure|bitcoin-configure|litecoin-configure)
+		cpu-configure|bfg-configure|cgm-configure|cgm-gpu-configure|slush0-configure|bitcoin-configure|litecoin-configure)
 			${P}/scripts/sub_${mynavigate}.sh 
 		;;
-		cpu-install|bfg-install|cgm-install|slush0-install|amd-install|bitcoin-install|litecoin-install|p2pool-bitcoin|solo-bitcoin)
+		cpu-install|bfg-install|cgm-install|cgm-gpu-install|slush0-install|amd-install|bitcoin-install|litecoin-install|p2pool-bitcoin|solo-bitcoin)
 			${P}/scripts/sub_${mynavigate}.sh 
 		;;
 		list-hardware|bitcoin-tools|litecoin-tools)
