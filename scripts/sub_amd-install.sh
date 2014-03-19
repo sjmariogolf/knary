@@ -176,7 +176,7 @@ clear
 echo "Inform: Waiting for [${HOME}/Downloads/${AMDSDK}]..."
 echo "Inform: 'http://developer.amd.com/tools-and-sdks/heterogeneous-computing/amd-accelerated-parallel-processing-app-sdk/downloads/#appsdkdownloads'"
 echo "Inform: Please Download to [${HOME}/Downloads], as [${AMDSDK}]..."
-read -p "Hit ENTER to continue..." ; echo "Ok"
+read -p "Please Hit ENTER when the file has completely Downloaded..." ; echo "Ok"
 while [ ! -f ${HOME}/Downloads/${AMDSDK} ] ;
 do
 	echo "Inform: Waiting..."
