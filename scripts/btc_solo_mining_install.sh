@@ -368,6 +368,7 @@ rpcpassword=`grep "^rpcpassword" ${HOME}/.bitcoin/bitcoin.conf | cut -d'=' -f2`
 
 echo "Inform: ${myinstalloc}/${SUBject}/stratum-mining/twisted.bash"
 cd ${myinstalloc}/${SUBject}/stratum-mining;nohup ${myinstalloc}/${SUBject}/stratum-mining/twisted.bash &
+echo
 
 return 0
 }
