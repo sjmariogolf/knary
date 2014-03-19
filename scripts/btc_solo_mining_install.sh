@@ -232,8 +232,8 @@ ${MySudoCom}apt-get install libminiupnpc-dev
 ${MySudoCom}apt-get install libdb4.8++
 ${MySudoCom}apt-get install libdb4.8++-dev
 ${MySudoCom}apt-get install sqlite
-${MySudoCom}apt-get install sqlite2
-${MySudoCom}apt-get install python-sqlite2
+#--${MySudoCom}apt-get install sqlite2
+#--${MySudoCom}apt-get install python-sqlite2
 ${MySudoCom}apt-get install python-pysqlite2
 ${MySudoCom}apt-get install python-dev
 ${MySudoCom}apt-get install python-setuptools
