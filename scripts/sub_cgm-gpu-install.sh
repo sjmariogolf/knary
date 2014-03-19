@@ -259,9 +259,15 @@ cd cgminer
 if [ -d "/opt/AMDAPP/include/" ];then
 	cp -r /opt/AMDAPP/include ADL_SDK
 fi
-./autogen.sh --enable-scrypt --enable-opencl --disable-adl
+# uncomment to disable the ADM SDK
+# -- ./autogen.sh --enable-scrypt --enable-opencl --disable-adl
+./autogen.sh --enable-scrypt --enable-opencl
+
 CFLAGS="-O2 -Wall -march=native"
-./configure --enable-scrypt --enable-opencl --disable-adl
+# uncomment to disable the ADM SDK
+#-- ./configure --enable-scrypt --enable-opencl --disable-adl
+./configure --enable-scrypt --enable-opencl
+
 read -p "Looking for GPU Enabled... Hit ENTER to continue..." ; echo "Ok"
 make clean
 make
