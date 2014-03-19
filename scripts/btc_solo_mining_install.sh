@@ -391,7 +391,7 @@ cat << EOF > ${myinstalloc}/${SUBject}/stratum-mining/twisted.bash
 #
 # Start the twisted stratum proxy
 #
-cd /root/git/stratum-mining
+cd ${myinstalloc}/${SUBject}/stratum-mining
 
 twistd -ny launcher.tac -l -
 for i in {0..30..1}
