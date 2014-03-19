@@ -229,15 +229,21 @@ if [ "$retval" = "0" ];then
 	wget --referer='http://support.amd.com/en-us/download/desktop?os=Linux+x86' http://www2.ati.com/drivers/linux/amd-catalyst-13.12-linux-x86.x86_64.zip
 	
 	read -p "Prepare to interact with the AMD Catalyst install. Hit ENTER to continue..." ; echo "Ok"
-	if [ "${MyBIT}" = "32" ];then
-		${MySudoCom}unzip amd-catalyst-13.12-linux-x86.x86_32.zip
-		${MySudoCom}chmod a+x amd-catalyst-13.12-linux-x86.x86_32.run
-		${MySudoCom}./amd-catalyst-13.12-linux-x86.x86_32.run	
-	elif [ "${MyBIT}" = "64" ];then
-		${MySudoCom}unzip amd-catalyst-13.12-linux-x86.x86_64.zip
-		${MySudoCom}chmod a+x amd-catalyst-13.12-linux-x86.x86_64.run
-		${MySudoCom}./amd-catalyst-13.12-linux-x86.x86_64.run	
-       	else
+        if [ "${MyBIT}" = "32" ];then
+                if [ -f "amd-catalyst-13.12-linux-x86.x86_32.zip" ];then
+                        ${MySudoCom}unzip amd-catalyst-13.12-linux-x86.x86_32.zip
+                        ${MySudoCom}chmod a+x amd-catalyst-13.12-linux-x86.x86_32.run
+                        ${MySudoCom}./amd-catalyst-13.12-linux-x86.x86_32.run
+                else
+                        ${MySudoCom}unzip amd-catalyst-13.12-linux-x86.x86_64.zip
+                        ${MySudoCom}chmod a+x amd-catalyst-13.12-linux-x86.x86_64.run
+                        ${MySudoCom}./amd-catalyst-13.12-linux-x86.x86_64.run
+                fi
+        elif [ "${MyBIT}" = "64" ];then
+                ${MySudoCom}unzip amd-catalyst-13.12-linux-x86.x86_64.zip
+                ${MySudoCom}chmod a+x amd-catalyst-13.12-linux-x86.x86_64.run
+                ${MySudoCom}./amd-catalyst-13.12-linux-x86.x86_64.run
+        else
                 log "Error: Unknown Endian [$MyBIT] aborting ${0}."
                 exit
         fi
