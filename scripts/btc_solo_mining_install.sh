@@ -139,6 +139,25 @@ rm -f ./bitcoind.out
 return 0
 }
 
+stop_twisted()
+{
+
+if [ -f ${myinstalloc}/${SUBject}/twistd.pid ];then
+	I=0
+        while [ -f ${myinstalloc}/${SUBject}/twistd.pid ] ;
+        do
+                I=`expr $I + 1`
+                echo "Inform: stopping twisted."
+                kill `cat ${myinstalloc}/${SUBject}/twistd.pid`
+                sleep 2
+                if [ $I > 5 ];then
+                        break;
+                fi
+        done
+fi
+
+return 0
+}
 
 if [ ! "$MyOS" = "debian" ];then
 	log "Error: I apologize, but this script has ONLY been tested on a Debian clone..."
@@ -374,7 +393,7 @@ log "Inform: Starting SOLO."
 
 rpcuser=`grep "^rpcuser" ${HOME}/.bitcoin/bitcoin.conf | cut -d'=' -f2`
 rpcpassword=`grep "^rpcpassword" ${HOME}/.bitcoin/bitcoin.conf | cut -d'=' -f2`
-
+stop_twisted
 echo "Inform: ${myinstalloc}/${SUBject}/stratum-mining/twisted.bash"
 cd ${myinstalloc}/${SUBject}/stratum-mining;nohup ${myinstalloc}/${SUBject}/stratum-mining/twisted.bash &
 echo
