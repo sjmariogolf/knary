@@ -102,5 +102,5 @@ done
 
 read -p "Hit ENTER to continue..." ; echo "Ok"
 sleep 5
-litecoind stop
+# --litecoind stop
 cd ${P};${P}/${RETURN}.sh
