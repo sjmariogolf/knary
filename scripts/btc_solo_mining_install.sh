@@ -412,8 +412,8 @@ cat << EOF > ${myinstalloc}/${SUBject}/stratum-mining/twisted.bash
 #
 cd ${myinstalloc}/${SUBject}/stratum-mining
 
-twistd -ny launcher.tac -l -
-for i in {0..30..1}
+twistd -ny launcher.tac -l - &
+for i in {0..10..1}
   do
         echo "Pausing for [\$i] seconds"
         sleep 1
