@@ -288,7 +288,6 @@ cat <<EOF >${SUBject}.conf
 "intensity" : "15",
 "vectors" : "1",
 "worksize" : "512",
-"kernel" : "scrypt",
 "lookup-gap" : "2",
 "thread-concurrency" : "0",
 "shaders" : "0",
