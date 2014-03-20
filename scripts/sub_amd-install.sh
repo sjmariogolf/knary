@@ -37,6 +37,7 @@ fi
 
 if [ "${MyBIT}" = "32" ];then
 	AMDSDK='AMD-APP-SDK-v2.9-lnx32.tgz'
+	#- If this is a 32 bit sytem and debian we need to do some work
 elif [ "${MyBIT}" = "64" ];then
 	AMDSDK='AMD-APP-SDK-v2.9-lnx64.tgz'
 else
