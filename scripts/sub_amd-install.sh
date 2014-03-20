@@ -15,6 +15,7 @@ RETURN="scripts/main_gpu-mining"
 MINEREL="amd-drivers"
 MINERDR=`echo ${MINEREL} | cut -d'-' -f1,2,3`
 CFLAGS="-O3"
+DO32patch='false'
 p=`pwd`
 
 if [ -f "${p}/include/globals" ];then
@@ -37,7 +38,11 @@ fi
 
 if [ "${MyBIT}" = "32" ];then
 	AMDSDK='AMD-APP-SDK-v2.9-lnx32.tgz'
-	#- If this is a 32 bit sytem and debian we need to do some work
+	if [[ `uname -v` =~ "#32-Ubuntu" ]] && [[ `uname -a` =~ "3." ]];then
+		#- If this is a 32 bit sytem and debian we need to do some work
+		echo "Info: This is a Debian 32 bit system. A patch is required. Knary will install it..."
+		DO32patch='true'
+	fi
 elif [ "${MyBIT}" = "64" ];then
 	AMDSDK='AMD-APP-SDK-v2.9-lnx64.tgz'
 else
@@ -155,6 +160,40 @@ cd ${myinstalloc}
 
 #  Download the AMD SDK
 retval=0
+perform_debian32_patch(){
+
+cd ${myinstalloc}
+echo "Inform: Installing 32bit Debian Kernel patch"
+cat > ${myinstalloc}/32bit_13.12_fglrx_patch <<EOF
+--- 13.12/common/lib/modules/fglrx/build_mod/kcl_acpi.c	2013-12-17 20:05:35.000000000 +0100
++++ 13.12/common/lib/modules/fglrx/build_mod/kcl_acpi.c	2013-12-19 18:40:18.386568588 +0100
+@@ -995,7 +995,11 @@
+ #endif
+     {
+         return KCL_ACPI_ERROR;
+-    }    
++    }
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(3,9,1)
++    ((acpi_tbl_table_handler)handler)(hdr);
++#else
+     ((acpi_table_handler)handler)(hdr);
++#endif
+     return KCL_ACPI_OK;
+-}
++}
+\ No newline at end of file
+EOF
+sudo apt-get install dpkg-dev debhelper dh-modaliases execstack
+chmod a+x amd-catalyst-13.12-linux-x86.x86_64.run
+sudo ./amd-catalyst-13.12-linux-x86.x86_64.run --extract 32bitpatch
+sudo patch -Np1 -i 32bit_13.12_fglrx_patch 32bitpatch/common/lib/modules/fglrx/build_mod/kcl_acpi.c 
+cd 32bitpatch
+sudo ./ati-installer.sh 13.251 --buildpkg Ubuntu/saucy
+cd ${myinstalloc}
+sudo dpkg -i *deb
+
+return 0
+}
 
 while [ ! -f ${HOME}/Downloads/${AMDSDK} ] ;
 do
@@ -234,7 +273,12 @@ if [ "$retval" = "0" ];then
                 if [ -f "amd-catalyst-13.12-linux-x86.x86_32.zip" ];then
                         ${MySudoCom}unzip amd-catalyst-13.12-linux-x86.x86_32.zip
                         ${MySudoCom}chmod a+x amd-catalyst-13.12-linux-x86.x86_32.run
-                        ${MySudoCom}./amd-catalyst-13.12-linux-x86.x86_32.run
+                        if [ "$DO32patch" = 'true' ];then
+                        	perform_debian32_patch
+                        else
+                        	${MySudoCom} chmod a+x ./amd-catalyst-13.12-linux-x86.x86_32.run
+                        	${MySudoCom}./amd-catalyst-13.12-linux-x86.x86_32.run
+                        fi	
                 else
                         ${MySudoCom}unzip amd-catalyst-13.12-linux-x86.x86_64.zip
                         ${MySudoCom}chmod a+x amd-catalyst-13.12-linux-x86.x86_64.run
