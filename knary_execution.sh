@@ -15,6 +15,11 @@ DEBUG=1
 . ${p}/include/globals
 . ${P}/include/include-all
 
+if [ $(id -u) = 0 ];then
+        echo "Info: Please run me as a normal user, not root."
+        exit 255
+fi
+
 echo "${P}">${P}/data/ENTRY
 
 #
