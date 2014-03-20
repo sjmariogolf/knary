@@ -195,7 +195,7 @@ sudo dpkg -i *deb
 return 0
 }
 
-while [ ! -f ${HOME}/Downloads/${AMDSDK} ] ;
+while [ ! -f "${HOME}/Downloads/${AMDSDK}" ] ;
 do
 if [ -f "${HOME}/Downloads/${AMDSDK}.part" ];then
 	echo "Downloading [$AMDSDK}]...";sleep 5
@@ -217,7 +217,7 @@ echo "Inform: Waiting for [${HOME}/Downloads/${AMDSDK}]..."
 echo "Inform: 'http://developer.amd.com/tools-and-sdks/heterogeneous-computing/amd-accelerated-parallel-processing-app-sdk/downloads/#appsdkdownloads'"
 echo "Inform: Please Download to [${HOME}/Downloads], as [${AMDSDK}]..."
 read -p "Please Hit ENTER when the file has completely Downloaded..." ; echo "Ok"
-while [ ! -f ${HOME}/Downloads/${AMDSDK} ] ;
+while [ ! -f "${HOME}/Downloads/${AMDSDK}" ] ;
 do
 	echo "Inform: Waiting..."
 	sleep 5
