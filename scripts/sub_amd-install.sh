@@ -183,14 +183,14 @@ cat > ${myinstalloc}/32bit_13.12_fglrx_patch <<EOF
 +}
 \ No newline at end of file
 EOF
-sudo apt-get install dpkg-dev debhelper dh-modaliases execstack
-chmod a+x amd-catalyst-13.12-linux-x86.x86_64.run
-sudo ./amd-catalyst-13.12-linux-x86.x86_64.run --extract 32bitpatch
-sudo patch -Np1 -i 32bit_13.12_fglrx_patch 32bitpatch/common/lib/modules/fglrx/build_mod/kcl_acpi.c 
+${MySudoCom}apt-get install dpkg-dev debhelper dh-modaliases execstack
+${MySudoCom}chmod a+x amd-catalyst-13.12-linux-x86.x86_64.run
+${MySudoCom}./amd-catalyst-13.12-linux-x86.x86_64.run --extract 32bitpatch
+${MySudoCom}patch -Np1 -i 32bit_13.12_fglrx_patch 32bitpatch/common/lib/modules/fglrx/build_mod/kcl_acpi.c 
 cd 32bitpatch
-sudo ./ati-installer.sh 13.251 --buildpkg Ubuntu/saucy
+${MySudoCom}./ati-installer.sh 13.251 --buildpkg Ubuntu/saucy
 cd ${myinstalloc}
-sudo dpkg -i *deb
+${MySudoCom}dpkg -i *deb
 
 return 0
 }
