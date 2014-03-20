@@ -270,16 +270,18 @@ if [ "$retval" = "0" ];then
 	
 	read -p "Prepare to interact with the AMD Catalyst install. Hit ENTER to continue..." ; echo "Ok"
         if [ "${MyBIT}" = "32" ];then
+        if [ "${MyBIT}" = "32" ];then
                 if [ -f "amd-catalyst-13.12-linux-x86.x86_64.zip" ];then
-                        ${MySudoCom}unzip amd-catalyst-13.12-linux-x86.x86_32.zip
-                        ${MySudoCom}chmod a+x amd-catalyst-13.12-linux-x86.x86_32.run
-                        if [ "$DO32patch" = 'true' ];then
-                        	${MySudoCom}unzip amd-catalyst-13.12-linux-x86.x86_64.zip
-                        	perform_debian32_patch
+                        ${MySudoCom}unzip amd-catalyst-13.12-linux-x86.x86_64.zip
+                        ${MySudoCom}chmod a+x amd-catalyst-13.12-linux-x86.x86_64.run
+                        if [ "$DO32patch" = "true" ];then
+                                perform_debian32_patch
                         else
-                        	${MySudoCom} chmod a+x ./amd-catalyst-13.12-linux-x86.x86_32.run
-                        	${MySudoCom}./amd-catalyst-13.12-linux-x86.x86_32.run
-                        fi	
+                                ${MySudoCom}./amd-catalyst-13.12-linux-x86.x86_64.run
+                        fi
+                else
+                        ${MySudoCom}./amd-catalyst-13.12-linux-x86.x86_64.run
+                fi	
                 else
                         ${MySudoCom}unzip amd-catalyst-13.12-linux-x86.x86_64.zip
                         ${MySudoCom}chmod a+x amd-catalyst-13.12-linux-x86.x86_64.run
