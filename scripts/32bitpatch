@@ -1,0 +1,31 @@
+989,1001c989,1004
+< 
+< #if LINUX_VERSION_CODE >= KERNEL_VERSION(3,6,3)    
+<     if (!ACPI_SUCCESS(acpi_get_table_with_size(id, 0, &hdr, &tbl_size)))
+< #else
+<     tbl_size = 0x7fffffff;
+<     if (!ACPI_SUCCESS(acpi_get_table(id, 0, &hdr)))
+< #endif
+<     {
+<         return KCL_ACPI_ERROR;
+<     }    
+<     ((acpi_table_handler)handler)(hdr);
+<     return KCL_ACPI_OK;
+< }
+---
+>     #if LINUX_VERSION_CODE >= KERNEL_VERSION(3,6,3)    
+>         if (!ACPI_SUCCESS(acpi_get_table_with_size(id, 0, &hdr, &tbl_size)))
+>     #else
+>         tbl_size = 0x7fffffff;
+>         if (!ACPI_SUCCESS(acpi_get_table(id, 0, &hdr)))
+>     #endif
+>         {
+>             return KCL_ACPI_ERROR;
+>         }
+>     #if LINUX_VERSION_CODE >= KERNEL_VERSION(3,9,1)
+>         ((acpi_tbl_table_handler)handler)(hdr);
+>     #else
+>         ((acpi_table_handler)handler)(hdr);
+>     #endif
+>         return KCL_ACPI_OK;
+>     }
