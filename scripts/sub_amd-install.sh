@@ -274,6 +274,7 @@ if [ "$retval" = "0" ];then
                         ${MySudoCom}unzip amd-catalyst-13.12-linux-x86.x86_32.zip
                         ${MySudoCom}chmod a+x amd-catalyst-13.12-linux-x86.x86_32.run
                         if [ "$DO32patch" = 'true' ];then
+                        	${MySudoCom}unzip amd-catalyst-13.12-linux-x86.x86_64.zip
                         	perform_debian32_patch
                         else
                         	${MySudoCom} chmod a+x ./amd-catalyst-13.12-linux-x86.x86_32.run
