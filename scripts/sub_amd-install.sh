@@ -38,10 +38,13 @@ fi
 
 if [ "${MyBIT}" = "32" ];then
 	AMDSDK='AMD-APP-SDK-v2.9-lnx32.tgz'
-	if [[ `uname -v` =~ "#32-Ubuntu" ]] && [[ `uname -a` =~ "3." ]];then
-		#- If this is a 32 bit sytem and debian we need to do some work
-		echo "Info: This is a Debian 32 bit system. A patch is required. Knary will install it..."
-		DO32patch='true'
+	if [[ `uname -v` =~ "-Ubuntu" ]];then
+		lsb_release -a | grep 13.10 2>/dev/null 1>&2
+		if [ $? = 0 ];then
+			##- if this is a 32 bit sytem and debian we need to do some work
+			echo "Info: This is a Debian 32 bit system. A patch is required. Knary will install it..."
+			DO32patch='true'
+		fi
 	fi
 elif [ "${MyBIT}" = "64" ];then
 	AMDSDK='AMD-APP-SDK-v2.9-lnx64.tgz'
