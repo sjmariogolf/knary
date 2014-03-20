@@ -281,10 +281,14 @@ if [ "$retval" = "0" ];then
                 exit
         fi
 echo "Installing ..."
-${MySudoCom}dpkg -i fglrx*.deb
+
+${MySudoCom}dpkg -i fglrx_*
+${MySudoCom}dpkg -i fglrx-dev*
+${MySudoCom}dpkg -i fglrx-a*
+
 ${MySudoCom}sudo apt-get -y -f install
 ${MySudoCom}ldconfig
-${MySudoCom}/usr/lib/fglrx/bin/amdcccle
+#-- ${MySudoCom}/usr/lib/fglrx/bin/amdcccle
 
 sleep 5
 $DIALOG --title "Yes/No Box" --clear "$@" \
