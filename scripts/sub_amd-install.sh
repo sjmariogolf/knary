@@ -164,33 +164,15 @@ perform_debian32_patch(){
 
 cd ${myinstalloc}
 echo "Inform: Installing 32bit Debian Kernel patch"
-cat > ${myinstalloc}/32bit_13.12_fglrx_patch <<EOF
---- 13.12/common/lib/modules/fglrx/build_mod/kcl_acpi.c	2013-12-17 20:05:35.000000000 +0100
-+++ 13.12/common/lib/modules/fglrx/build_mod/kcl_acpi.c	2013-12-19 18:40:18.386568588 +0100
-@@ -995,7 +995,11 @@
- #endif
-     {
-         return KCL_ACPI_ERROR;
--    }    
-+    }
-+#if LINUX_VERSION_CODE >= KERNEL_VERSION(3,9,1)
-+    ((acpi_tbl_table_handler)handler)(hdr);
-+#else
-     ((acpi_table_handler)handler)(hdr);
-+#endif
-     return KCL_ACPI_OK;
--}
-+}
-\ No newline at end of file
-EOF
-${MySudoCom}apt-get install dpkg-dev debhelper dh-modaliases execstack
+${MySudoCom}apt-get install dpkg-dev debhelper dh-modaliases execstack dkms
 ${MySudoCom}chmod a+x amd-catalyst-13.12-linux-x86.x86_64.run
 ${MySudoCom}./amd-catalyst-13.12-linux-x86.x86_64.run --extract 32bitpatch
-${MySudoCom}patch -Np1 -i 32bit_13.12_fglrx_patch 32bitpatch/common/lib/modules/fglrx/build_mod/kcl_acpi.c 
+MYsave=`date +%B%d%Y%H%M%S`
+${MySudoCom}cp 32bitpatch/common/lib/modules/fglrx/build_mod/kcl_acpi.c 32bitpatch/common/lib/modules/fglrx/build_mod/kcl_acpi.c.${MYsave}
+${MySudoCom}patch -i ../../scripts/32bitpatch 32bitpatch/common/lib/modules/fglrx/build_mod/kcl_acpi.c
 cd 32bitpatch
 ${MySudoCom}./ati-installer.sh 13.251 --buildpkg Ubuntu/saucy
 cd ${myinstalloc}
-${MySudoCom}dpkg -i *deb
 
 return 0
 }
@@ -299,6 +281,7 @@ echo "Installing ..."
 ${MySudoCom}dpkg -i fglrx*.deb
 ${MySudoCom}sudo apt-get -y -f install
 ${MySudoCom}ldconfig
+${MySudoCom}/usr/lib/fglrx/bin/amdcccle
 
 sleep 5
 $DIALOG --title "Yes/No Box" --clear "$@" \
