@@ -270,7 +270,7 @@ if [ "$retval" = "0" ];then
 	
 	read -p "Prepare to interact with the AMD Catalyst install. Hit ENTER to continue..." ; echo "Ok"
         if [ "${MyBIT}" = "32" ];then
-                if [ -f "amd-catalyst-13.12-linux-x86.x86_32.zip" ];then
+                if [ -f "amd-catalyst-13.12-linux-x86.x86_64.zip" ];then
                         ${MySudoCom}unzip amd-catalyst-13.12-linux-x86.x86_32.zip
                         ${MySudoCom}chmod a+x amd-catalyst-13.12-linux-x86.x86_32.run
                         if [ "$DO32patch" = 'true' ];then
