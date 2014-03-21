@@ -161,7 +161,18 @@ rm -f *gz*
 rm -f *zip*
 cd ${myinstalloc}
 
-#  Download the AMD SDK
+# Announce the backout instructions
+$DIALOG --cr-wrap --title "Backout Options Message Box" --clear "$@" \
+        --msgbox "If you encounter problems after this installation, for\
+                  example a BLACK screen, here is the BACKOUT.\
+                  \nPress Ctrl+Alt F1, or F2 to get to a Linux Shell. Then login.\
+                  \nEnter a force removal of amd-uninstall.sh, and fglrx-uninstall.sh.\
+                  \nsudo /usr/share/ati/amd-uninstall.sh --force\
+                  \nsudo /usr/share/ati/fglrx-uninstall.sh --force\
+                  \nThen sudo reboot. This will restore your environment." 14 65
+retval=$?
+
+# Download the AMD SDK
 retval=0
 perform_debian32_patch(){
 
