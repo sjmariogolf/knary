@@ -150,6 +150,7 @@ $DIALOG --separate-output --backtitle "${backtitle}" \
         "install uthash-dev"          	"${MyInstaller} install" On \
         "install python-devel"          "${MyInstaller} install" On \
         "install pkg-config"      	"${MyInstaller} install" On \
+        "install libtool"      		"${MyInstaller} install" On \
         "install automake"      	"${MyInstaller} install" On \
         "install autoconf"            	"${MyInstaller} install" On \
         "clean"                         "${MyInstaller} clean" On 2> $tempfile
