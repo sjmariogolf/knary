@@ -248,7 +248,7 @@ if [ "$retval" = "0" ];then
         	exit
 	fi
 	${MySudoCom}ldconfig
-	${MySudoCom}apt-get -y install unzip
+	${MySudoCom}${MyInstaller} install unzip
 	# -- Get the latest catalyst drivers
 	echo "Inform: This can take some time. It will finish..."
 	wget --referer='http://support.amd.com/en-us/download/desktop?os=Linux+x86' http://www2.ati.com/drivers/linux/amd-catalyst-13.12-linux-x86.x86_64.zip
@@ -281,12 +281,17 @@ if [ "$retval" = "0" ];then
                 exit
         fi
 echo "Installing ..."
+if [ "$MyOS" = "debian" ];then
+	${MySudoCom}dpkg -i fglrx_*
+	${MySudoCom}dpkg -i fglrx-dev*
+	${MySudoCom}dpkg -i fglrx-a*
+	${MySudoCom}dpkg -i fglrx*.deb
+	${MySudoCom}apt-get -y -f install
+else
+	${MySudoCom}rpm  -i fglrx*.rpm
+	${MySudoCom}yum -y -f install
+fi
 
-${MySudoCom}dpkg -i fglrx_*
-${MySudoCom}dpkg -i fglrx-dev*
-${MySudoCom}dpkg -i fglrx-a*
-
-${MySudoCom}sudo apt-get -y -f install
 ${MySudoCom}ldconfig
 #-- ${MySudoCom}/usr/lib/fglrx/bin/amdcccle
 
