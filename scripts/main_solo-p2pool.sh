@@ -43,7 +43,8 @@ $DIALOG --default-item "P2POOL SOLO Mining" --clear --title "{Knary} SOLO Menu B
         \nChoose from the List Below:" 30 75 5 \
         "RETURN"        	"Return to the PREVIOUS menu. <Cancel> will also return."\
         "P2POOL-BITCOIN"       	"Install for SOLO Bitcoin Mining."\
-        "SOLO-BITCOIN" 		"Install for SOLO Bitcoin Mining." 2>$tempfile
+        "SOLO-BITCOIN" 		"Install for SOLO Bitcoin Mining."\
+        "SOLO-LITECOIN" 	"Install for SOLO Litecoin Mining." 2>$tempfile
 
 retval=$?
 report-menu ${retval} ${RETURN}.sh ${RETURN} ${RETURN}.sh ${RETURN}.sh
