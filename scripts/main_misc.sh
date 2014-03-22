@@ -1,6 +1,6 @@
 #!/bin/bash -   
 #title          :main_cpu-mining.sh
-#description    :Main Entry for CPU-MINING
+#description    :Main Entry for MISC
 #author         :Steven J. Martin
 #date           :20140222
 #version        :${version}
