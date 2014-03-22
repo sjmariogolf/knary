@@ -37,7 +37,7 @@ $DIALOG --default-item "MISC Tools" --clear --title "{Knary} TOOL-BOX Menu Box" 
         \nChoose from the List Below:" 25 75 5 \
         "RETURN"        "Return to the PREVIOUS menu. <Cancel> will also return."\
         "LIST-HARDWARE" 	"List hardware."\
-        "BITCOND-TOOLS"      	"Various BITCOIN daemon Tools."\
+        "BITCOIND-TOOLS"      	"Various BITCOIN daemon Tools."\
         "LITECOIND-TOOLS"      	"Various LITECOIN daemon Tools." 2>$tempfile
 
 retval=$?
