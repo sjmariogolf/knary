@@ -31,6 +31,7 @@ $DIALOG --default-item "CPU-MINING" --clear --title "{Knary} Mining Setup Menu B
         "GPU-MINING" 	"Install and - or Configure cgminer/bfgminer."\
         "BITCOIN" 	"Install and - or Configure the Bitcoin daemon, and Client."\
         "LITECOIN" 	"Install and - or Configure the Litecoin daemon, and Client."\
+        "PEERCOIN" 	"Install and - or Configure the Peercoin daemon, and Client."\
         "STRATUM"  	"Install and - or Configure a Stratum Proxy."\
         "SOLO-P2POOL"  	"Install and - or Execute SOLO and P2Pool Mining."\
         "MISC"  	"Misc Tools  - tools for the miner." 2>$tempfile

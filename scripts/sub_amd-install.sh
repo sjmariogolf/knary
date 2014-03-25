@@ -161,18 +161,7 @@ rm -f *gz*
 rm -f *zip*
 cd ${myinstalloc}
 
-# Announce the backout instructions
-$DIALOG --cr-wrap --title "Backout Options Message Box" --clear "$@" \
-        --msgbox "If you encounter problems after this installation, for\
-                  example a BLACK screen, here is the BACKOUT.\
-                  \nPress Ctrl+Alt F1, or F2 to get to a Linux Shell. Then login.\
-                  \nEnter a force removal of amd-uninstall.sh, and fglrx-uninstall.sh.\
-                  \nsudo /usr/share/ati/amd-uninstall.sh --force\
-                  \nsudo /usr/share/ati/fglrx-uninstall.sh --force\
-                  \nThen sudo reboot. This will restore your environment." 14 65
-retval=$?
-
-# Download the AMD SDK
+#  Download the AMD SDK
 retval=0
 perform_debian32_patch(){
 
@@ -259,7 +248,7 @@ if [ "$retval" = "0" ];then
         	exit
 	fi
 	${MySudoCom}ldconfig
-	${MySudoCom}${MyInstaller} install unzip
+	${MySudoCom}apt-get -y install unzip
 	# -- Get the latest catalyst drivers
 	echo "Inform: This can take some time. It will finish..."
 	wget --referer='http://support.amd.com/en-us/download/desktop?os=Linux+x86' http://www2.ati.com/drivers/linux/amd-catalyst-13.12-linux-x86.x86_64.zip
@@ -292,17 +281,12 @@ if [ "$retval" = "0" ];then
                 exit
         fi
 echo "Installing ..."
-if [ "$MyOS" = "debian" ];then
-	${MySudoCom}dpkg -i fglrx_*
-	${MySudoCom}dpkg -i fglrx-dev*
-	${MySudoCom}dpkg -i fglrx-a*
-	${MySudoCom}dpkg -i fglrx*.deb
-	${MySudoCom}apt-get -y -f install
-else
-	${MySudoCom}rpm  -i fglrx*.rpm
-	${MySudoCom}yum -y -f install
-fi
 
+${MySudoCom}dpkg -i fglrx_*
+${MySudoCom}dpkg -i fglrx-dev*
+${MySudoCom}dpkg -i fglrx-a*
+
+${MySudoCom}sudo apt-get -y -f install
 ${MySudoCom}ldconfig
 #-- ${MySudoCom}/usr/lib/fglrx/bin/amdcccle
 

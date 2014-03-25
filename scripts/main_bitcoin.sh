@@ -40,7 +40,7 @@ $DIALOG --default-item "The BITCOIN Daemon and Client" --clear --title "{Knary} 
 	\nThis Daemon process can be used in SOLO mining.\
 	\nThe daemon and client processes download the entire BLOCK CHAIN.\
  	\nThis prcess can take more that a day to complete.\
-        \n\nhttps://http://www.bitcoin.com.\
+        \n\nhttp://www.bitcoin.com.\
 	\nLicense: GPL open source (unknown) tbd.\
         \n\n[You can use the UP/DOWN arrow keys, the first letter of the choice as a hot key, or the number keys 1-9 to choose an option.]\
         \nSelect CONFIGURE to perform configuration, or INSTALL to install it now!\

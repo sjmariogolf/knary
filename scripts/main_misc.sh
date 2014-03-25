@@ -1,6 +1,6 @@
 #!/bin/bash -   
 #title          :main_cpu-mining.sh
-#description    :Main Entry for MISC
+#description    :Main Entry for CPU-MINING
 #author         :Steven J. Martin
 #date           :20140222
 #version        :${version}
@@ -37,7 +37,7 @@ $DIALOG --default-item "MISC Tools" --clear --title "{Knary} TOOL-BOX Menu Box" 
         \nChoose from the List Below:" 25 75 5 \
         "RETURN"        "Return to the PREVIOUS menu. <Cancel> will also return."\
         "LIST-HARDWARE" 	"List hardware."\
-        "BITCOIND-TOOLS"      	"Various BITCOIN daemon Tools."\
+        "BITCOND-TOOLS"      	"Various BITCOIN daemon Tools."\
         "LITECOIND-TOOLS"      	"Various LITECOIN daemon Tools." 2>$tempfile
 
 retval=$?

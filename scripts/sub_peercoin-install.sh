@@ -1,18 +1,18 @@
 #!/bin/bash -   
-#title          :sub_bitcoin-daemon.sh
-#description    :Install for the BITCOIN DAEMON
+#title          :sub_peercoin-daemon.sh
+#description    :Install for the PPCOIN DAEMON
 #author         :Steven J. Martin
 #date           :20140222
 #version        :${version}
-#usage          :./sub_bitcoin-daemon.sh
+#usage          :./sub_peercoin-daemon.sh
 #notes          :       
 #bash_version   :4.2.45(1)-release
 #============================================================================
 
-SUBject="bitcoind"
+SUBject="peercoind"
 INSTLOC=`echo ${SUBject} | tr '[:lower:]' '[:upper:]'`
-RETURN="scripts/main_bitcoin"
-MINEREL="bitcoind"
+RETURN="scripts/main_peercoin"
+MINEREL="ppcoin-0.3.0-linux"
 MINERDR=`echo ${MINEREL} | cut -d'-' -f2,3`
 CFLAGS="-O3"
 p=`pwd`
@@ -27,7 +27,7 @@ elif [ -f "../include/globals" ];then
 	echo "Oops running stand-alone."
 fi
 
-log "Inform:Starting bitcoin-daemon installation."
+log "Inform:Starting peercoin-daemon installation."
 
 if [ "$(whoami)" != "root" ]; then
         MySudoCom='sudo '
@@ -39,7 +39,7 @@ control_c()
 {
 	clear
         echo "=== [Ctrl+c] Interupt Exiting ==="
-        killall bitcoind
+        killall ppcoind
         sleep 5
         cd ${P};${P}/${RETURN}.sh
         exit $?
@@ -156,7 +156,7 @@ $DIALOG --separate-output --backtitle "${backtitle}" \
         "clean"                         "${MyInstaller} clean" On 2> $tempfile
 
 	retval=$?
-	report-tempfile ${retval} "${MyInstaller}" ${RETURN}.sh ${RETURN}.sh ${RETURN}.sh bitcoind_installation 
+	report-tempfile ${retval} "${MyInstaller}" ${RETURN}.sh ${RETURN}.sh ${RETURN}.sh ppcoind_installation 
 else
 $DIALOG --separate-output --backtitle "${backtitle}" \
         --title "Stage(1) [${SUBject}] -- {Knary} ... Preparing Checklist Box" "$@" \
@@ -174,7 +174,7 @@ $DIALOG --separate-output --backtitle "${backtitle}" \
         "clean packages"                        "${MyInstaller} clean" On 2> $tempfile
 
 	retval=$?
-	report-tempfile ${retval} "${MyInstaller}" ${RETURN}.sh ${RETURN}.sh ${RETURN}.sh bitcoind_installation 
+	report-tempfile ${retval} "${MyInstaller}" ${RETURN}.sh ${RETURN}.sh ${RETURN}.sh ppcoind_installation 
 
 yum -y -q groupinstall "Development Tools"
 
@@ -233,40 +233,83 @@ fi
 
 cd ${myinstalloc}/${SUBject}
 
+#--qt4-qmake libqt4-dev build-essential
 #
-# Install the bitcoin software for bitcoind and bitcoin-qt
+# Stage(1) -- Preparing the system with general necessary packages
 #
 
+if [ "$MyOS" = "debian" ];then
 $DIALOG --separate-output --backtitle "${backtitle}" \
-	--title "Stage(2) -- {Knary} Mining Setup Preparing for Bitcoin Checklist Box" "$@" \
-        --checklist "Add the Bitcoin repository for bitcoin-qt?\
-  	\nThese commands will be executed..." 12 61 5 \
-        "ppa:bitcoin\/bitcoin"	"${MyAddRepo}" On 2> $tempfile
+        --title "Stage(1) [${SUBject}] -- {Knary} ... Preparing Checklist Box" "$@" \
+        --checklist "Installation of the necessary prerequisite packages.\
+        \nYou can choose what to or what not to install.\
+        \n\n{Knary} recommends leaving them all checked unless you know otherwise.\
+        \nPress SPACE to toggle an option on/off.\
+        \n\nThese commands will be executed..." 20 61 9 \
+        "update"                "${MyInstaller}" On \
+        "install git"                   "${MyInstaller} install" On \
+        "install wget"                  "${MyInstaller} install" On \
+        "install build-essential"       "${MyInstaller} install" On \
+        "install libcurl4-openssl-dev"  "${MyInstaller} install" On \
+        "install libncurses5-dev"       "${MyInstaller} install" On \
+        "install libjansson-dev"        "${MyInstaller} install" On \
+        "install pkg-config"      	"${MyInstaller} install" On \
+        "install qt4-qmake"      	"${MyInstaller} install" On \
+        "install libqt4-dev"      	"${MyInstaller} install" On \
+        "install automake"      	"${MyInstaller} install" On \
+        "install autoconf"            	"${MyInstaller} install" On \
+        "clean"                         "${MyInstaller} clean" On 2> $tempfile
 
-retval=$?
-
-report-tempfile ${retval} "${MyAddRepo}" ${RETURN}.sh ${RETURN}.sh ${RETURN}.sh bitcoind_installation
-
+	retval=$?
+	report-tempfile ${retval} "${MyInstaller}" ${RETURN}.sh ${RETURN}.sh ${RETURN}.sh bitcoind_installation 
+else
 $DIALOG --separate-output --backtitle "${backtitle}" \
-	--title "Stage(3) -- {Knary} Mining Setup Installing Bitcoin Checklist Box" "$@" \
-        --checklist "Ok, Now the bitcoin update, bitcoind daemon and bitcoin-qt.\
-	\nYou can choose what to or what not to install.\
-	\nI recommend leaving them all checked unless you know otherwise.\
-	\nPress SPACE to toggle an option on/off.\
-  	\nThese commands will be executed..." 20 61 5 \
-        "update"			"${MyInstaller}" On \
-        "install bitcoind"		"${MyInstaller} install" On \
-        "install bitcoin-qt"		"${MyInstaller} install" On \
-        "clean"				"${MyInstaller} clean" On 2> $tempfile
+        --title "Stage(1) [${SUBject}] -- {Knary} ... Preparing Checklist Box" "$@" \
+        --checklist "Installation of the necessary prerequisite packages.\
+        \nYou can choose what to or what not to install.\
+        \n\n{Knary} recommends leaving them all checked unless you know otherwise.\
+        \nPress SPACE to toggle an option on/off.\
+        \n\nThese commands will be executed..." 20 61 9 \
+        "update"                		"${MyInstaller}" On \
+        "install git"                   	"${MyInstaller} install" On \
+        "install wget"                  	"${MyInstaller} install" On \
+        "install gcc"                   	"${MyInstaller} install" On \
+        "install make"                  	"${MyInstaller} install" On \
+        "install qt4-qmake"      		"${MyInstaller} install" On \
+        "install libqt4-dev"      		"${MyInstaller} install" On \
+        "install python-devel"          	"${MyInstaller} install" On \
+        "clean packages"                        "${MyInstaller} clean" On 2> $tempfile
 
-retval=$?
+	retval=$?
+	report-tempfile ${retval} "${MyInstaller}" ${RETURN}.sh ${RETURN}.sh ${RETURN}.sh bitcoind_installation 
 
-report-tempfile ${retval} "${MyInstaller}" ${RETURN}.sh ${RETURN}.sh ${RETURN}.sh bitcoind_installation
+yum -y -q groupinstall "Development Tools"
 
-if [ -f "${HOME}/.bitcoin/bitcoin.conf" ];then
-	$DIALOG --title "BITCOIN.CONF Exists -- Replace Yes/No Box" "$@" \
-        --yesno "You already have a bitcoin.conf file.\
-        \nFound this one [${HOME}/.bitcoin/bitcoin.conf.]\
+fi
+
+#-- make the ppcoin daemon
+git clone https://github.com/ppcoin/ppcoin.git
+cd ppcoin;make -f makefile.unix
+${MySudoCom}cp ppcoind /usr/bin
+cd ${myinstalloc}/${SUBject}
+
+#-- make the ppcoin-qt wallet application
+wget http://sourceforge.net/projects/ppcoin/files/0.3.0/${MINEREL}.tar.gz
+tar zxvf ${MINEREL}.tar.gz 
+mv ${MINEREL}.tar.gz ../../downloads 
+cd ${MINEREL}
+autoconf bitcoin-qt.pro
+qmake;make
+${MySudoCom}cp ppcoin-qt /usr/bin
+
+#
+# Install the peercoin software for ppcoind and peercoin-qt
+#
+
+if [ -f "${HOME}/.peercoin/ppcoin.conf" ];then
+	$DIALOG --title "PPCOIN.CONF Exists -- Replace Yes/No Box" "$@" \
+        --yesno "You already have a ppcoin.conf file.\
+        \nFound this one [${HOME}/.peercoin/ppcoin.conf.]\
 	\nTo replace this file click yes. Knary will back up the old one and replace it." 0 0 
 
 	retval=$?
@@ -287,11 +330,11 @@ else
 fi
 
 if [ "${OverW}" = "yes" ];then
-MyBCUser=bitcoinrpc
+MyBCUser=peercoinrpc
 MyBCPasswd=`uuidgen -r`
-cat << EOF > ${HOME}/.bitcoin/bitcoin.conf
+cat << EOF > ${HOME}/.peercoin/ppcoin.conf
 server=1
-rpcport=8332
+rpcport=7332
 rpctimeout=30
 rpcuser=$MyBCUser
 rpcpassword=$MyBCPasswd
@@ -299,30 +342,30 @@ rpcallowip=127.0.0.1
 EOF
 fi
 
-cat << EOF > ${myinstalloc}/${SUBject}/bitcoin-test.sh
+cat << EOF > ${myinstalloc}/${SUBject}/peercoin-test.sh
 #!/bin/bash
 #
-# Start the bitcoin daemon
+# Start the peercoin daemon
 #
 clear
-bitcoind -testnet -daemon &
+ppcoind -testnet -daemon &
 for i in {0..15..1}
   do
 	clear
      	echo -n "Pausing for [\$i] seconds"
 	sleep 1
-	bitcoind getinfo
+	ppcoind getinfo
 done
 exit
 EOF
-chmod a+x ${myinstalloc}/${SUBject}/bitcoin-test.sh
+chmod a+x ${myinstalloc}/${SUBject}/peercoin-test.sh
 
 # Testing
 
-${myinstalloc}/${SUBject}/bitcoin-test.sh
+${myinstalloc}/${SUBject}/peercoin-test.sh
 
 read -p "Hit ENTER to continue..." ; echo "Ok"
-bitcoind stop
+ppcoind stop
 sleep 5
 
 fi

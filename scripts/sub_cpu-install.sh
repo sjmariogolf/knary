@@ -151,7 +151,6 @@ $DIALOG --separate-output --backtitle "${backtitle}" \
         "install libncurses5-dev"       "${MyInstaller} install" On \
         "install libjansson-dev"        "${MyInstaller} install" On \
         "install pkg-config"      	"${MyInstaller} install" On \
-        "install libtool"      		"${MyInstaller} install" On \
         "install automake"      	"${MyInstaller} install" On \
         "install autoconf"            	"${MyInstaller} install" On \
         "clean"                         "${MyInstaller} clean" On 2> $tempfile

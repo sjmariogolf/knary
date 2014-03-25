@@ -24,13 +24,13 @@ case $retval in
 			${P}/${docan}
 			kill -KILL ${PPID} 2> /dev/null 1>&2
 		;;
-		cpu-mining|bfg-mining|gpu-mining|asics-mining|bitcoin|litecoin|stratum|solo-p2pool|misc)
+		cpu-mining|bfg-mining|gpu-mining|asics-mining|bitcoin|litecoin|peercoin|stratum|solo-p2pool|misc)
 			${P}/scripts/main_${mynavigate}.sh 
 		;;
-		cpu-configure|bfg-configure|cgm-configure|cgm-gpu-configure|slush0-configure|bitcoin-configure|litecoin-configure)
+		cpu-configure|bfg-configure|cgm-configure|cgm-gpu-configure|slush0-configure|bitcoin-configure|litecoin-configure|peercoin-configure)
 			${P}/scripts/sub_${mynavigate}.sh 
 		;;
-		cpu-install|bfg-install|cgm-install|cgm-gpu-install|slush0-install|amd-install|cat-install|bitcoin-install|litecoin-install|p2pool-bitcoin|solo-bitcoin|solo-litecoin)
+		cpu-install|bfg-install|cgm-install|cgm-gpu-install|slush0-install|amd-install|cat-install|bitcoin-install|litecoin-install|peercoin-install|p2pool-bitcoin|solo-bitcoin|solo-litecoin)
 			${P}/scripts/sub_${mynavigate}.sh 
 		;;
 		list-hardware|bitcoin-tools|litecoin-tools)

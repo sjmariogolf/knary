@@ -1,10 +1,10 @@
 #!/bin/bash -   
-#title          :main_solo-p2pool.sh
-#description    :Main Entry for P2POOL SOLO
+#title          :main_peercoin.sh
+#description    :Main Entry for PEERCOIN
 #author         :Steven J. Martin
 #date           :20140222
 #version        :${version}
-#usage          :./main_solo-p2pool.sh
+#usage          :./main_peercoin.sh
 #notes          :       
 #bash_version   :4.2.45(1)-release
 #============================================================================
@@ -33,19 +33,20 @@ fi
 #
 # Present the submenu
 #
-$DIALOG --default-item "P2POOL SOLO Mining" --clear --title "{Knary} SOLO Menu Box" "$@" \
+$DIALOG --default-item "The PEERCOIN Daemon and Client" --clear --title "{Knary} PeerCoind Menu Box" "$@" \
         --menu "Sub Menu\
-        \nThis is the SOLO Sub Menu.\
-        \n\nhttps://bitcointalk.org/index.php?topic=62842.0.\
+        \nThis is the PEERCOIN Daemon Sub Menu.\
+	\n<ppcoin> is a Daemon process that can run on this server.\
+	\nThis Daemon process can be used in SOLO mining.\
+	\nThe daemon and client processes download the entire BLOCK CHAIN.\
+ 	\nThis prcess can take more that a day to complete.\
 	\nLicense: GPL open source (unknown) tbd.\
         \n\n[You can use the UP/DOWN arrow keys, the first letter of the choice as a hot key, or the number keys 1-9 to choose an option.]\
         \nSelect CONFIGURE to perform configuration, or INSTALL to install it now!\
         \nChoose from the List Below:" 30 75 5 \
         "RETURN"        	"Return to the PREVIOUS menu. <Cancel> will also return."\
-        "P2POOL-BITCOIN"       	"Install for SOLO Bitcoin Mining."\
-        "SOLO-BITCOIN" 		"Install for SOLO Bitcoin Mining."\
-        "SOLO-LITECOIN" 	"Install for SOLO Litecoin Mining."\
-        "SOLO-PEERCOIN" 	"Install for SOLO Peercoin Mining." 2>$tempfile
+        "PEERCOIN-INSTALL"      "Install the PEERCOIN Daemon and client."\
+        "PEERCOIN-CONFIGURE" 	"Configure the PEERCOIN Daemon." 2>$tempfile
 
 retval=$?
 report-menu ${retval} ${RETURN}.sh ${RETURN} ${RETURN}.sh ${RETURN}.sh

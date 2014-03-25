@@ -1,6 +1,6 @@
 #!/bin/bash -   
-#title          :main_stratum-mining.sh
-#description    :Main Entry for STRATUM
+#title          :main_litecoin.sh
+#description    :Main Entry for LITECOIN
 #author         :Steven J. Martin
 #date           :20140222
 #version        :${version}
@@ -40,7 +40,7 @@ $DIALOG --default-item "The LITECOIN Daemon and Client" --clear --title "{Knary}
 	\nThis Daemon process can be used in SOLO mining.\
 	\nThe daemon and client processes download the entire BLOCK CHAIN.\
  	\nThis prcess can take more that a day to complete.\
-        \n\nhttps://http://www.litecoin.com.\
+        \n\n//http://www.litecoin.com.\
 	\nLicense: GPL open source (unknown) tbd.\
         \n\n[You can use the UP/DOWN arrow keys, the first letter of the choice as a hot key, or the number keys 1-9 to choose an option.]\
         \nSelect CONFIGURE to perform configuration, or INSTALL to install it now!\
