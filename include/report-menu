@@ -30,7 +30,7 @@ case $retval in
 		cpu-configure|bfg-configure|cgm-configure|cgm-gpu-configure|slush0-configure|bitcoin-configure|litecoin-configure|peercoin-configure)
 			${P}/scripts/sub_${mynavigate}.sh 
 		;;
-		cpu-install|bfg-install|cgm-install|cgm-gpu-install|slush0-install|amd-install|cat-install|bitcoin-install|litecoin-install|peercoin-install|p2pool-bitcoin|solo-bitcoin|solo-litecoin)
+		cpu-install|bfg-install|cgm-install|cgm-gpu-install|slush0-install|amd-install|cat-install|bitcoin-install|litecoin-install|peercoin-install|p2pool-bitcoin|solo-bitcoin|solo-litecoin|solo-peercoin)
 			${P}/scripts/sub_${mynavigate}.sh 
 		;;
 		list-hardware|bitcoin-tools|litecoin-tools)

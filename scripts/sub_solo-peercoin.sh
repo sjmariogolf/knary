@@ -95,12 +95,12 @@ do
 $DIALOG --sleep 1 \
 	--title "Knary Info Box" "$@" \
         --infobox "The stratum mining proxy is not supported with PEERCOIN.\
-		\nHowever it is possible to SOLO Mine PeerCoin by simply pointing\
-		\nyour cgminer configured as ASICs to these configuration settings:\
+		\nHowever it is possible to SOLO Mine PeerCoin by simply pointing your cgminer configured\
+		  as ASICs to these configuration settings:\
 		\n\"url\" : \"192.168.1.6:9902\",\
                 \n\"user\" : \"ppcoinrpc\",\
                 \n\"pass\" : \"4e32c804-your-password-here-a529cfa2\"\
-		\nYou have $left $unit to read this..." 10 52
+		\n\n\n            You have $left $unit to read this..." 14 64
 left=`expr $left - 1`
 test $left = 1 && unit="second"
 done

@@ -1,0 +1,163 @@
+Knary::,Tue Mar 25 2014 18:33:22 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:33:22 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:33:22 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:33:24 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:33:24 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:33:24 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:33:24 ,main_menu.sh,20,steven,Inform:Installing::MAIN. Start.
+Knary::,Tue Mar 25 2014 18:33:27 ,report-menu,5,steven,Inform: retval 0,doexec scripts/exit.sh dook scripts/exit.sh,docan scripts/exit.sh,doout 1
+Knary::,Tue Mar 25 2014 18:33:27 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:33:27 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:33:27 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:33:29 ,report-menu,5,steven,Inform: retval 0,doexec scripts/main_menu.sh dook scripts/main_menu,docan scripts/main_menu.sh,doout scripts/main_menu.sh
+Knary::,Tue Mar 25 2014 18:33:29 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:33:29 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:33:29 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:33:29 ,sub_peercoin-configure.sh,29,steven,Inform:Starting "ppcoind" configuration.
+Knary::,Tue Mar 25 2014 18:33:29 ,sub_peercoin-configure.sh,38,steven,Inform: Install location for [ppcoind] is [/tmp/knary/exec/ppcoind]. INSLOC is 
+Knary::,Tue Mar 25 2014 18:33:56 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:33:56 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:33:56 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:33:58 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:33:58 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:33:58 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:33:58 ,main_menu.sh,20,steven,Inform:Installing::MAIN. Start.
+Knary::,Tue Mar 25 2014 18:34:02 ,report-menu,5,steven,Inform: retval 0,doexec scripts/exit.sh dook scripts/exit.sh,docan scripts/exit.sh,doout 1
+Knary::,Tue Mar 25 2014 18:34:02 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:34:02 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:34:02 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:34:04 ,report-menu,5,steven,Inform: retval 0,doexec scripts/main_menu.sh dook scripts/main_menu,docan scripts/main_menu.sh,doout scripts/main_menu.sh
+Knary::,Tue Mar 25 2014 18:34:04 ,report-menu,40,steven,Oops ... solo-peercoin
+Knary::,Tue Mar 25 2014 18:35:34 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:35:34 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:35:34 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:35:35 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:35:35 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:35:35 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:35:35 ,main_menu.sh,20,steven,Inform:Installing::MAIN. Start.
+Knary::,Tue Mar 25 2014 18:35:37 ,report-menu,5,steven,Inform: retval 0,doexec scripts/exit.sh dook scripts/exit.sh,docan scripts/exit.sh,doout 1
+Knary::,Tue Mar 25 2014 18:35:37 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:35:37 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:35:37 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:35:39 ,report-menu,5,steven,Inform: retval 0,doexec scripts/main_menu.sh dook scripts/main_menu,docan scripts/main_menu.sh,doout scripts/main_menu.sh
+Knary::,Tue Mar 25 2014 18:37:18 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:37:18 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:37:18 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:37:19 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:37:19 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:37:19 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:37:19 ,main_menu.sh,20,steven,Inform:Installing::MAIN. Start.
+Knary::,Tue Mar 25 2014 18:37:21 ,report-menu,5,steven,Inform: retval 0,doexec scripts/exit.sh dook scripts/exit.sh,docan scripts/exit.sh,doout 1
+Knary::,Tue Mar 25 2014 18:37:21 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:37:21 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:37:21 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:37:23 ,report-menu,5,steven,Inform: retval 0,doexec scripts/main_menu.sh dook scripts/main_menu,docan scripts/main_menu.sh,doout scripts/main_menu.sh
+Knary::,Tue Mar 25 2014 18:37:23 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:37:23 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:37:23 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:37:23 ,sub_solo-bitcoin.sh,39,steven,Inform:Starting SOLO BITCOIN installation. [/tmp/knary/exec].
+Knary::,Tue Mar 25 2014 18:37:23 ,sub_solo-bitcoin.sh,166,steven,Inform: Ok, we are running on a Debian clone [i686]. Proceed.
+Knary::,Tue Mar 25 2014 18:37:23 ,sub_solo-bitcoin.sh,168,steven,Inform: This is a rather long and tedious undertaking. Please be patient...
+Knary::,Tue Mar 25 2014 18:37:30 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:37:30 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:37:30 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:37:30 ,report-menu,5,steven,Inform: retval 1,doexec scripts/main_menu.sh dook scripts/main_menu,docan scripts/main_menu.sh,doout scripts/main_menu.sh
+Knary::,Tue Mar 25 2014 18:37:30 ,report-menu,50,steven,Cancel pressed. scripts/main_menu.sh,/tmp/knary/scripts/main_solo-p2pool.sh
+Knary::,Tue Mar 25 2014 18:37:30 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:37:30 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:37:30 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:37:30 ,main_menu.sh,20,steven,Inform:Installing::MAIN. Start.
+Knary::,Tue Mar 25 2014 18:37:30 ,report-menu,5,steven,Inform: retval 1,doexec scripts/exit.sh dook scripts/exit.sh,docan scripts/exit.sh,doout 1
+Knary::,Tue Mar 25 2014 18:37:30 ,report-menu,50,steven,Cancel pressed. scripts/exit.sh,/tmp/knary/scripts/main_menu.sh
+Knary::,Tue Mar 25 2014 18:37:32 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:37:32 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:37:32 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:37:34 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:37:34 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:37:34 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:37:34 ,main_menu.sh,20,steven,Inform:Installing::MAIN. Start.
+Knary::,Tue Mar 25 2014 18:37:36 ,report-menu,5,steven,Inform: retval 0,doexec scripts/exit.sh dook scripts/exit.sh,docan scripts/exit.sh,doout 1
+Knary::,Tue Mar 25 2014 18:37:36 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:37:36 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:37:36 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:37:38 ,report-menu,5,steven,Inform: retval 0,doexec scripts/main_menu.sh dook scripts/main_menu,docan scripts/main_menu.sh,doout scripts/main_menu.sh
+Knary::,Tue Mar 25 2014 18:41:33 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:41:33 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:41:33 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:41:35 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:41:35 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:41:35 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:41:35 ,main_menu.sh,20,steven,Inform:Installing::MAIN. Start.
+Knary::,Tue Mar 25 2014 18:41:37 ,report-menu,5,steven,Inform: retval 0,doexec scripts/exit.sh dook scripts/exit.sh,docan scripts/exit.sh,doout 1
+Knary::,Tue Mar 25 2014 18:41:37 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:41:37 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:41:37 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:41:40 ,report-menu,5,steven,Inform: retval 0,doexec scripts/main_menu.sh dook scripts/main_menu,docan scripts/main_menu.sh,doout scripts/main_menu.sh
+Knary::,Tue Mar 25 2014 18:41:40 ,report-menu,40,steven,Oops ... solo-peercoin
+Knary::,Tue Mar 25 2014 18:41:55 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:41:55 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:41:55 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:41:57 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:41:57 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:41:57 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:41:57 ,main_menu.sh,20,steven,Inform:Installing::MAIN. Start.
+Knary::,Tue Mar 25 2014 18:42:00 ,report-menu,5,steven,Inform: retval 0,doexec scripts/exit.sh dook scripts/exit.sh,docan scripts/exit.sh,doout 1
+Knary::,Tue Mar 25 2014 18:42:00 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:42:00 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:42:00 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:42:04 ,report-menu,5,steven,Inform: retval 0,doexec scripts/main_menu.sh dook scripts/main_menu,docan scripts/main_menu.sh,doout scripts/main_menu.sh
+Knary::,Tue Mar 25 2014 18:42:04 ,report-menu,40,steven,Oops ... solo-peercoin
+Knary::,Tue Mar 25 2014 18:42:41 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:42:41 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:42:41 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:42:43 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:42:43 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:42:43 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:42:43 ,main_menu.sh,20,steven,Inform:Installing::MAIN. Start.
+Knary::,Tue Mar 25 2014 18:42:45 ,report-menu,5,steven,Inform: retval 0,doexec scripts/exit.sh dook scripts/exit.sh,docan scripts/exit.sh,doout 1
+Knary::,Tue Mar 25 2014 18:42:45 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:42:45 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:42:45 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:42:46 ,report-menu,5,steven,Inform: retval 0,doexec scripts/main_menu.sh dook scripts/main_menu,docan scripts/main_menu.sh,doout scripts/main_menu.sh
+Knary::,Tue Mar 25 2014 18:42:46 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:42:46 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:42:46 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:42:46 ,sub_solo-peercoin.sh,39,steven,Inform:Starting SOLO PEERCOIN installation. [/tmp/knary/exec].
+Knary::,Tue Mar 25 2014 18:43:01 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:43:01 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:43:01 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:43:03 ,report-menu,5,steven,Inform: retval 1,doexec scripts/main_menu.sh dook scripts/main_menu,docan scripts/main_menu.sh,doout scripts/main_menu.sh
+Knary::,Tue Mar 25 2014 18:43:03 ,report-menu,50,steven,Cancel pressed. scripts/main_menu.sh,/tmp/knary/scripts/main_solo-p2pool.sh
+Knary::,Tue Mar 25 2014 18:43:03 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:43:03 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:43:03 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:43:03 ,main_menu.sh,20,steven,Inform:Installing::MAIN. Start.
+Knary::,Tue Mar 25 2014 18:43:05 ,report-menu,5,steven,Inform: retval 1,doexec scripts/exit.sh dook scripts/exit.sh,docan scripts/exit.sh,doout 1
+Knary::,Tue Mar 25 2014 18:43:05 ,report-menu,50,steven,Cancel pressed. scripts/exit.sh,/tmp/knary/scripts/main_menu.sh
+Knary::,Tue Mar 25 2014 18:43:32 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:43:32 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:43:32 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:43:34 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:43:34 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:43:34 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:43:34 ,main_menu.sh,20,steven,Inform:Installing::MAIN. Start.
+Knary::,Tue Mar 25 2014 18:43:36 ,report-menu,5,steven,Inform: retval 0,doexec scripts/exit.sh dook scripts/exit.sh,docan scripts/exit.sh,doout 1
+Knary::,Tue Mar 25 2014 18:43:36 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:43:36 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:43:36 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:43:37 ,report-menu,5,steven,Inform: retval 0,doexec scripts/main_menu.sh dook scripts/main_menu,docan scripts/main_menu.sh,doout scripts/main_menu.sh
+Knary::,Tue Mar 25 2014 18:43:37 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:43:37 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:43:37 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:43:37 ,sub_solo-peercoin.sh,39,steven,Inform:Starting SOLO PEERCOIN installation. [/tmp/knary/exec].
+Knary::,Tue Mar 25 2014 18:44:00 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:44:00 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:44:00 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:44:00 ,report-menu,5,steven,Inform: retval 0,doexec scripts/main_menu.sh dook scripts/main_menu,docan scripts/main_menu.sh,doout scripts/main_menu.sh
+Knary::,Tue Mar 25 2014 18:44:00 ,report-menu,23,steven,Inform: Returning to [scripts/main_menu.sh]
+Knary::,Tue Mar 25 2014 18:44:00 ,determine-os,12,steven,Inform: [steven] is starting as UID [1000].
+Knary::,Tue Mar 25 2014 18:44:00 ,determine-os,24,steven,Inform: Little Endian.
+Knary::,Tue Mar 25 2014 18:44:00 ,determine-os,33,steven,Inform: [Linux steven-Studio-1440 3.11.0-18-generic #32-Ubuntu SMP Tue Feb 18 21:13:28 UTC 2014 i686 i686 i686 GNU/Linux] I am a Debian or Clone.
+Knary::,Tue Mar 25 2014 18:44:00 ,main_menu.sh,20,steven,Inform:Installing::MAIN. Start.
+Knary::,Tue Mar 25 2014 18:44:02 ,report-menu,5,steven,Inform: retval 0,doexec scripts/exit.sh dook scripts/exit.sh,docan scripts/exit.sh,doout 1
+Knary::,Tue Mar 25 2014 18:44:02 ,report-menu,23,steven,Inform: Returning to [scripts/exit.sh]
