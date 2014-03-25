@@ -24,7 +24,7 @@ case $retval in
 			${P}/${docan}
 			kill -KILL ${PPID} 2> /dev/null 1>&2
 		;;
-		cpu-mining|bfg-mining|gpu-mining|asics-mining|bitcoin|litecoin|peercoin|stratum|solo-p2pool|misc)
+		cpu-mining|bfg-mining|gpu-mining|asics-mining|bitcoin|litecoin|peercoin|stratum|solo-p2pool|solo-peercoin|misc)
 			${P}/scripts/main_${mynavigate}.sh 
 		;;
 		cpu-configure|bfg-configure|cgm-configure|cgm-gpu-configure|slush0-configure|bitcoin-configure|litecoin-configure|peercoin-configure)
