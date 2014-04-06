@@ -131,10 +131,6 @@ done
 # Save our install location information
 echo ${myinstalloc} > ${P}/data/${INSTLOC}
 
-#
-# Stage(1) -- Preparing the system with general necessary packages
-#
-
 if [ "$MyOS" = "debian" ];then
 $DIALOG --separate-output --backtitle "${backtitle}" \
         --title "Stage(1) [${SUBject}] -- {Knary} ... Preparing Checklist Box" "$@" \
@@ -151,12 +147,14 @@ $DIALOG --separate-output --backtitle "${backtitle}" \
         "install libncurses5-dev"       "${MyInstaller} install" On \
         "install libjansson-dev"        "${MyInstaller} install" On \
         "install pkg-config"      	"${MyInstaller} install" On \
+        "install qt4-qmake"      	"${MyInstaller} install" On \
+        "install libqt4-dev"      	"${MyInstaller} install" On \
         "install automake"      	"${MyInstaller} install" On \
         "install autoconf"            	"${MyInstaller} install" On \
         "clean"                         "${MyInstaller} clean" On 2> $tempfile
 
 	retval=$?
-	report-tempfile ${retval} "${MyInstaller}" ${RETURN}.sh ${RETURN}.sh ${RETURN}.sh ppcoind_installation 
+	report-tempfile ${retval} "${MyInstaller}" ${RETURN}.sh ${RETURN}.sh ${RETURN}.sh bitcoind_installation 
 else
 $DIALOG --separate-output --backtitle "${backtitle}" \
         --title "Stage(1) [${SUBject}] -- {Knary} ... Preparing Checklist Box" "$@" \
@@ -170,11 +168,13 @@ $DIALOG --separate-output --backtitle "${backtitle}" \
         "install wget"                  	"${MyInstaller} install" On \
         "install gcc"                   	"${MyInstaller} install" On \
         "install make"                  	"${MyInstaller} install" On \
+        "install qt4-qmake"      		"${MyInstaller} install" On \
+        "install libqt4-dev"      		"${MyInstaller} install" On \
         "install python-devel"          	"${MyInstaller} install" On \
         "clean packages"                        "${MyInstaller} clean" On 2> $tempfile
 
 	retval=$?
-	report-tempfile ${retval} "${MyInstaller}" ${RETURN}.sh ${RETURN}.sh ${RETURN}.sh ppcoind_installation 
+	report-tempfile ${retval} "${MyInstaller}" ${RETURN}.sh ${RETURN}.sh ${RETURN}.sh bitcoind_installation 
 
 yum -y -q groupinstall "Development Tools"
 
@@ -238,54 +238,6 @@ cd ${myinstalloc}/${SUBject}
 # Stage(1) -- Preparing the system with general necessary packages
 #
 
-if [ "$MyOS" = "debian" ];then
-$DIALOG --separate-output --backtitle "${backtitle}" \
-        --title "Stage(1) [${SUBject}] -- {Knary} ... Preparing Checklist Box" "$@" \
-        --checklist "Installation of the necessary prerequisite packages.\
-        \nYou can choose what to or what not to install.\
-        \n\n{Knary} recommends leaving them all checked unless you know otherwise.\
-        \nPress SPACE to toggle an option on/off.\
-        \n\nThese commands will be executed..." 20 61 9 \
-        "update"                "${MyInstaller}" On \
-        "install git"                   "${MyInstaller} install" On \
-        "install wget"                  "${MyInstaller} install" On \
-        "install build-essential"       "${MyInstaller} install" On \
-        "install libcurl4-openssl-dev"  "${MyInstaller} install" On \
-        "install libncurses5-dev"       "${MyInstaller} install" On \
-        "install libjansson-dev"        "${MyInstaller} install" On \
-        "install pkg-config"      	"${MyInstaller} install" On \
-        "install qt4-qmake"      	"${MyInstaller} install" On \
-        "install libqt4-dev"      	"${MyInstaller} install" On \
-        "install automake"      	"${MyInstaller} install" On \
-        "install autoconf"            	"${MyInstaller} install" On \
-        "clean"                         "${MyInstaller} clean" On 2> $tempfile
-
-	retval=$?
-	report-tempfile ${retval} "${MyInstaller}" ${RETURN}.sh ${RETURN}.sh ${RETURN}.sh bitcoind_installation 
-else
-$DIALOG --separate-output --backtitle "${backtitle}" \
-        --title "Stage(1) [${SUBject}] -- {Knary} ... Preparing Checklist Box" "$@" \
-        --checklist "Installation of the necessary prerequisite packages.\
-        \nYou can choose what to or what not to install.\
-        \n\n{Knary} recommends leaving them all checked unless you know otherwise.\
-        \nPress SPACE to toggle an option on/off.\
-        \n\nThese commands will be executed..." 20 61 9 \
-        "update"                		"${MyInstaller}" On \
-        "install git"                   	"${MyInstaller} install" On \
-        "install wget"                  	"${MyInstaller} install" On \
-        "install gcc"                   	"${MyInstaller} install" On \
-        "install make"                  	"${MyInstaller} install" On \
-        "install qt4-qmake"      		"${MyInstaller} install" On \
-        "install libqt4-dev"      		"${MyInstaller} install" On \
-        "install python-devel"          	"${MyInstaller} install" On \
-        "clean packages"                        "${MyInstaller} clean" On 2> $tempfile
-
-	retval=$?
-	report-tempfile ${retval} "${MyInstaller}" ${RETURN}.sh ${RETURN}.sh ${RETURN}.sh bitcoind_installation 
-
-yum -y -q groupinstall "Development Tools"
-
-fi
 
 #-- make the ppcoin daemon
 git clone https://github.com/ppcoin/ppcoin.git
@@ -298,8 +250,8 @@ wget http://sourceforge.net/projects/ppcoin/files/0.3.0/${MINEREL}.tar.gz
 tar zxvf ${MINEREL}.tar.gz 
 mv ${MINEREL}.tar.gz ../../downloads 
 cd ${MINEREL}
-autoconf bitcoin-qt.pro
-qmake;make
+qmake bitcoin-qt.pro
+make
 ${MySudoCom}cp ppcoin-qt /usr/bin
 
 #
