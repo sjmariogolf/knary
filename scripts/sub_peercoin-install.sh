@@ -151,6 +151,7 @@ $DIALOG --separate-output --backtitle "${backtitle}" \
         "install libqt4-dev"      	"${MyInstaller} install" On \
         "install automake"      	"${MyInstaller} install" On \
         "install autoconf"            	"${MyInstaller} install" On \
+        "install libtool"            	"${MyInstaller} install" On \
         "clean"                         "${MyInstaller} clean" On 2> $tempfile
 
 	retval=$?
@@ -213,6 +214,7 @@ cd ${myinstalloc}
 rm -rf json-c
 git clone https://github.com/json-c/json-c.git
 cd json-c
+libtoolize
 sh autogen.sh
 ./configure
 make
