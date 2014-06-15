@@ -1,0 +1,549 @@
+
+	
+Building headless Bitcoin and Bitcoin-qt on Windows
+March 05, 2013, 10:26:41 PM
+	
+ #1
+Hi all, I recently went through the process of building bitcoind on windows.
+I found the official build-msw.txt to be a bit lacking, so I thought that documenting the steps here on the forums could save some time to people wanting to compile their own windows binary. Wink
+
+Please note this is mostly for testing purposes. Always use official executables on production environments.
+The following instructions are intended for use with the latest 0.9.1. See additional notes if compiling an older 0.8.6 version.
+
+1. Prepare your build system.
+I strongly suggest setting up a clean windows virtual machine via Virtualbox or similar.
+
+1.1 Install msys shell:
+http://sourceforge.net/projects/mingw/files/Installer/mingw-get-setup.exe/download
+From MinGW installation manager -> All packages -> MSYS
+mark the following for installation:
+
+msys-base-bin
+msys-autoconf-bin
+msys-automake-bin
+msys-libtool-bin
+
+then click on Installation -> Apply changes
+
+Make sure no mingw packages are checked for installation or present from a previous install. Only the above msys packages should be installed. Also make sure that msys-gcc and msys-w32api packages are not installed.
+
+1.2 Install a toolchain from MinGW-builds project:
+Download and unpack i686-4.8.2-release-posix-dwarf-rt_v3-rev4.7z to C:\
+http://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/4.8.2/threads-posix/dwarf/i686-4.8.2-release-posix-dwarf-rt_v3-rev4.7z/download
+
+1.3. Ensure that mingw-builds bin folder is set in your PATH environment variable. On Windows 7 your path should look something like:
+Code:
+
+C:\mingw32\bin;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\
+
+
+1.4 Additional checks:
+C:\MinGW\bin should contain nothing but mingw-get.exe.
+Your gcc -v output should be:
+Code:
+
+$ gcc -v
+Using built-in specs.
+COLLECT_GCC=gcc
+COLLECT_LTO_WRAPPER=C:/mingw32/bin/../libexec/gcc/i686-w64-mingw32/4.8.2/lto-wrapper.exe
+Target: i686-w64-mingw32
+Configured with: ../../../src/gcc-4.8.2/configure --host=i686-w64-mingw32 --build=i686-w64-mingw32 --target=i686-w64-mingw32 --prefix=/mingw32 --with-sysroot=/c/mingw482/i686-482-posix-dwarf-rt_v3-rev4/mingw32 --with-gxx-include-dir=/mingw32/i686-w64-mingw32/include/c++ --enable-shared --enable-static --disable-multilib --enable-languages=ada,c,c++,fortran,objc,obj-c++,lto --enable-libstdcxx-time=yes --enable-threads=posix --enable-libgomp --enable-libatomic --enable-lto --enable-graphite --enable-checking=release --enable-fully-dynamic-string --enable-version-specific-runtime-libs --disable-sjlj-exceptions --with-dwarf2 --disable-isl-version-check --disable-cloog-version-check --disable-libstdcxx-pch --disable-libstdcxx-debug --enable-bootstrap --disable-rpath --disable-win32-registry --disable-nls --disable-werror --disable-symvers --with-gnu-as --with-gnu-ld --with-arch=i686 --with-tune=generic --with-libiconv --with-system-zlib --with-gmp=/c/mingw482/prerequisites/i686-w64-mingw32-static --with-mpfr=/c/mingw482/prerequisites/i686-w64-mingw32-static --with-mpc=/c/mingw482/prerequisites/i686-w64-mingw32-static --with-isl=/c/mingw482/prerequisites/i686-w64-mingw32-static --with-cloog=/c/mingw482/prerequisites/i686-w64-mingw32-static --enable-cloog-backend=isl --with-pkgversion='i686-posix-dwarf-rev4, Built by MinGW-W64 project' --with-bugurl=http://sourceforge.net/projects/mingw-w64 CFLAGS='-O2 -pipe -I/c/mingw482/i686-482-posix-dwarf-rt_v3-rev4/mingw32/opt/include -I/c/mingw482/prerequisites/i686-zlib-static/include -I/c/mingw482/prerequisites/i686-w64-mingw32-static/include' CXXFLAGS='-O2 -pipe -I/c/mingw482/i686-482-posix-dwarf-rt_v3-rev4/mingw32/opt/include -I/c/mingw482/prerequisites/i686-zlib-static/include -I/c/mingw482/prerequisites/i686-w64-mingw32-static/include' CPPFLAGS= LDFLAGS='-pipe -L/c/mingw482/i686-482-posix-dwarf-rt_v3-rev4/mingw32/opt/lib -L/c/mingw482/prerequisites/i686-zlib-static/lib -L/c/mingw482/prerequisites/i686-w64-mingw32-static/lib -Wl,--large-address-aware'
+Thread model: posix
+gcc version 4.8.2 (i686-posix-dwarf-rev4, Built by MinGW-W64 project)
+
+
+
+2. Download, unpack and build required dependencies.
+I'll save them in c:\deps folder.
+
+2.1 OpenSSL: http://www.openssl.org/source/openssl-1.0.1g.tar.gz
+From a MinGw shell (C:\MinGW\msys\1.0\msys.bat), unpack the source archive with tar (this will avoid symlink issues) then configure and make:
+Code:
+
+cd /c/deps/
+tar xvfz openssl-1.0.1g.tar.gz
+cd openssl-1.0.1g
+Configure no-shared no-dso mingw
+make
+
+
+2.2 Berkeley DB: http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz
+We'll use version 4.8 to preserve binary wallet compatibility.
+From a MinGW shell unpack the source archive, configure and make:
+Code:
+
+cd /c/deps/
+tar xvfz db-4.8.30.NC.tar.gz
+cd db-4.8.30.NC/build_unix
+../dist/configure --enable-mingw --enable-cxx --disable-shared --disable-replication
+make
+
+
+2.3 Boost: http://sourceforge.net/projects/boost/files/boost/1.55.0/
+Download either the zip or the 7z archive, unpack boost inside your C:\deps folder, then bootstrap and compile from a Windows command prompt:
+Code:
+
+cd C:\deps\boost_1_55_0\
+bootstrap.bat mingw
+b2 --build-type=complete --with-chrono --with-filesystem --with-program_options --with-system --with-thread toolset=gcc variant=release link=static threading=multi runtime-link=static stage
+
+
+This will compile the required boost libraries and put them into the stage folder (C:\deps\boost_1_55_0\stage).
+Note: make sure you don't use tarballs, as unix EOL markers can break batch files.
+
+2.4 Miniupnpc: http://miniupnp.free.fr/files/download.php?file=miniupnpc-1.9.tar.gz
+Unpack Miniupnpc to C:\deps, rename containing folder from "miniupnpc-1.9" to "miniupnpc" then from a Windows command prompt:
+Code:
+
+cd C:\deps\miniupnpc
+mingw32-make -f Makefile.mingw init upnpc-static
+
+
+2.5 protoc and libprotobuf:
+Download and unpack http://protobuf.googlecode.com/files/protobuf-2.5.0.zip
+Then from msys shell
+Code:
+
+cd /c/deps/protobuf-2.5.0
+configure --disable-shared
+make
+
+
+2.6 qrencode:
+Download and unpack http://prdownloads.sourceforge.net/libpng/libpng-1.6.10.tar.gz?download inside your deps folder then configure and make:
+Code:
+
+cd /c/deps/libpng-1.6.10
+configure --disable-shared
+make
+
+
+Download and unpack http://fukuchi.org/works/qrencode/qrencode-3.4.3.tar.gz inside your deps folder then configure and make:
+Code:
+
+cd /c/deps/qrencode-3.4.3
+
+LIBS="../libpng-1.6.10/.libs/libpng16.a ../../mingw32/i686-w64-mingw32/lib/libz.a" \
+png_CFLAGS="-I../libpng-1.6.10" \
+png_LIBS="-L../libpng-1.6.10/.libs" \
+configure --enable-static --disable-shared --without-tools
+
+make
+
+
+2.7 Qt 5 libraries:
+Qt must be configured with ssl and zlib support.
+Download and unpack Qt base and tools sources:
+http://download.qt-project.org/official_releases/qt/5.2/5.2.1/submodules/qtbase-opensource-src-5.2.1.7z
+http://download.qt-project.org/official_releases/qt/5.2/5.2.1/submodules/qttools-opensource-src-5.2.1.7z
+Then from a windows command prompt (note that the following supposes qtbase is unpacked into C:\Qt\5.2.1 and qttools are unpacked into C:\Qt\qttools-opensource-src-5.2.1):
+Code:
+
+set INCLUDE=C:\deps\libpng-1.6.10;C:\deps\openssl-1.0.1g\include
+set LIB=C:\deps\libpng-1.6.10\.libs;C:\deps\openssl-1.0.1g
+
+cd C:\Qt\5.2.1
+configure.bat -release -opensource -confirm-license -static -make libs -no-sql-sqlite -no-opengl -system-zlib -qt-pcre -no-icu -no-gif -system-libpng -no-libjpeg -no-freetype -no-angle -no-vcproj -openssl-linked -no-dbus -no-audio-backend -no-wmf-backend -no-qml-debug
+
+mingw32-make
+
+set PATH=%PATH%;C:\Qt\5.2.1\bin
+
+cd C:\Qt\qttools-opensource-src-5.2.1
+qmake qttools.pro
+mingw32-make
+
+
+Note: consider using -j switch with mingw32-make to speed up compilation process. On a quad core -j4 or -j5 should give the best results.
+
+
+3. Download and unpack Bitcoin 0.9.1 from git https://github.com/bitcoin/bitcoin/archive/v0.9.1.zip
+Patch makefile to avoid being asked for permission during compile process:
+https://github.com/bitcoin/bitcoin/commit/dbe8f7526266092fe7b045dadaefb753feca15a6
+
+From msys shell configure and make bitcoin:
+Code:
+
+cp /c/deps/libpng-1.6.10/.libs/libpng16.a /c/deps/libpng-1.6.10/.libs/libpng.a
+
+cd /c/bitcoin-0.9.1
+
+./autogen.sh
+
+CPPFLAGS="-I/c/deps/boost_1_55_0 \
+-I/c/deps/db-4.8.30.NC/build_unix \
+-I/c/deps/openssl-1.0.1g/include \
+-I/c/deps \
+-I/c/deps/protobuf-2.5.0/src \
+-I/c/deps/libpng-1.6.10 \
+-I/c/deps/qrencode-3.4.3" \
+LDFLAGS="-L/c/deps/boost_1_55_0/stage/lib \
+-L/c/deps/db-4.8.30.NC/build_unix \
+-L/c/deps/openssl-1.0.1g \
+-L/c/deps/miniupnpc \
+-L/c/deps/protobuf-2.5.0/src/.libs \
+-L/c/deps/libpng-1.6.10/.libs \
+-L/c/deps/qrencode-3.4.3/.libs" \
+./configure \
+--disable-upnp-default \
+--disable-tests \
+--with-qt-incdir=/c/Qt/5.2.1/include \
+--with-qt-libdir=/c/Qt/5.2.1/lib \
+--with-qt-bindir=/c/Qt/5.2.1/bin \
+--with-qt-plugindir=/c/Qt/5.2.1/plugins \
+--with-boost-system=mgw48-mt-s-1_55 \
+--with-boost-filesystem=mgw48-mt-s-1_55 \
+--with-boost-program-options=mgw48-mt-s-1_55 \
+--with-boost-thread=mgw48-mt-s-1_55 \
+--with-boost-chrono=mgw48-mt-s-1_55 \
+--with-protoc-bindir=/c/deps/protobuf-2.5.0/src
+
+make
+
+strip src/bitcoin-cli.exe
+strip src/bitcoind.exe
+strip src/qt/bitcoin-qt.exe
+
+
+
+64 bit binaries
+64 bit binaries can be compiled by using the following toolchain:
+http://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/4.8.2/threads-posix/seh/x86_64-4.8.2-release-posix-seh-rt_v3-rev4.7z/download
+
+All dependencies must be rebuilt with the above toolchain.
+Openssl should be configured with:
+Code:
+
+Configure mingw64
+
+
+
+
+
+
+Additional notes for Bitcoin 0.8.6
+msys-autoconf, msys-automake and msys-libtool at step 1.1 are not needed. You can skip steps 2.5 and 2.7.
+
+
+Compile bitcoind: https://github.com/bitcoin/bitcoin/archive/v0.8.6.zip
+
+With a texteditor edit BOOST_SUFFIX, INCLUDEPATHS and LIBPATHS in your C:\bitcoin-0.8.6\src\makefile.mingw according to your dependencies location:
+Code:
+
+BOOST_SUFFIX?=-mgw48-mt-s-1_55
+
+INCLUDEPATHS= \
+ -I"$(CURDIR)" \
+ -I"/c/deps/boost_1_55_0" \
+ -I"/c/deps/db-4.8.30.NC/build_unix" \
+ -I"/c/deps/openssl-1.0.1g/include"
+ 
+LIBPATHS= \
+ -L"$(CURDIR)/leveldb" \
+ -L"/c/deps/boost_1_55_0/stage/lib" \
+ -L"/c/deps/db-4.8.30.NC/build_unix" \
+ -L"/c/deps/openssl-1.0.1g"
+
+
+and add -static option to LDFLAGS in makefile.mingw to compile a statically linked executable.
+Code:
+
+LDFLAGS=-Wl,--dynamicbase -Wl,--nxcompat -Wl,--large-address-aware -static
+
+
+makefile.mingw patch:
+Code:
+
+--- makefile.mingw	Thu Dec 05 14:11:26 2013
++++ makefile.mingw	Sat Apr 05 12:30:43 2014
+@@ -21,15 +21,19 @@
+ USE_IPV6:=1
+ 
+ DEPSDIR?=/usr/local
+-BOOST_SUFFIX?=-mgw46-mt-sd-1_52
++BOOST_SUFFIX?=-mgw48-mt-s-1_55
+ 
+ INCLUDEPATHS= \
+  -I"$(CURDIR)" \
+- -I"$(DEPSDIR)/include"
+-
++ -I"/c/deps/boost_1_55_0" \
++ -I"/c/deps/db-4.8.30.NC/build_unix" \
++ -I"/c/deps/openssl-1.0.1g/include"
++ 
+ LIBPATHS= \
+  -L"$(CURDIR)/leveldb" \
+- -L"$(DEPSDIR)/lib"
++ -L"/c/deps/boost_1_55_0/stage/lib" \
++ -L"/c/deps/db-4.8.30.NC/build_unix" \
++ -L"/c/deps/openssl-1.0.1g"
+ 
+ LIBS= \
+  -l leveldb \
+@@ -47,7 +51,7 @@
+ DEBUGFLAGS=-g
+ CFLAGS=-mthreads -O2 -w -Wall -Wextra -Wformat -Wformat-security -Wno-unused-parameter $(DEBUGFLAGS) $(DEFS) $(INCLUDEPATHS)
+ # enable: ASLR, DEP and large address aware
+-LDFLAGS=-Wl,--dynamicbase -Wl,--nxcompat -Wl,--large-address-aware
++LDFLAGS=-Wl,--dynamicbase -Wl,--nxcompat -Wl,--large-address-aware -static
+ 
+ TESTDEFS = -DTEST_DATA_DIR=$(abspath test/data)
+ 
+
+
+Upnp support is disabled by default. If you want to compile with upnp support set
+Code:
+
+USE_UPNP:=1
+
+and add miniupnpc path to INCLUDEPATHS and LIBPATHS:
+Code:
+
+INCLUDEPATHS= \
+ -I"$(CURDIR)" \
+ -I"/c/deps/boost_1_55_0" \
+ -I"/c/deps" \
+ -I"/c/deps/db-4.8.30.NC/build_unix" \
+ -I"/c/deps/openssl-1.0.1g/include"
+ 
+LIBPATHS= \
+ -L"$(CURDIR)/leveldb" \
+ -L"/c/deps/boost_1_55_0/stage/lib" \
+ -L"/c/deps/miniupnpc" \
+ -L"/c/deps/db-4.8.30.NC/build_unix" \
+ -L"/c/deps/openssl-1.0.1g"
+
+
+From Msys shell compile bitcoind:
+Code:
+
+cd /c/bitcoin-0.8.6/src
+make -f makefile.mingw
+strip bitcoind.exe
+
+
+
+Compile bitcoin-qt 0.8.6 with Qt 4.8:
+Download and unpack http://download.qt-project.org/official_releases/qt/4.8/4.8.5/qt-everywhere-opensource-src-4.8.5.zip
+Assuming qt sources are unpacked to C:\Qt\4.8.5, from a windows command prompt:
+
+Code:
+
+cd C:\Qt\4.8.5
+configure -release -opensource -confirm-license -static -no-sql-sqlite -no-qt3support -no-opengl -qt-zlib -no-gif -qt-libpng -qt-libmng -no-libtiff -qt-libjpeg -no-dsp -no-vcproj -no-openssl -no-dbus -no-phonon -no-phonon-backend -no-multimedia -no-audio-backend -no-webkit -no-script -no-scripttools -no-declarative -no-declarative-debug -no-style-plastique -no-style-cleanlooks -no-style-motif -no-style-cde -nomake demos -nomake examples
+mingw32-make
+
+
+Note that if you skipped bitcoind compilation or if you have cleaned up your source folder you will need to compile libleveldb.a and libmemenv.a libraries before proceeding.
+From msys shell:
+Code:
+
+cd /C/bitcoin-0.8.6/src/leveldb
+TARGET_OS=NATIVE_WINDOWS make libleveldb.a libmemenv.a
+
+
+
+Edit C:\bitcoin-0.8.6\bitcoin-qt.pro with your favourite text editor and add
+
+dependency library locations:
+Code:
+
+# Dependency library locations can be customized with:
+#    BOOST_INCLUDE_PATH, BOOST_LIB_PATH, BDB_INCLUDE_PATH,
+#    BDB_LIB_PATH, OPENSSL_INCLUDE_PATH and OPENSSL_LIB_PATH respectively
+
+BOOST_LIB_SUFFIX=-mgw48-mt-s-1_55
+BOOST_INCLUDE_PATH=C:/deps/boost_1_55_0
+BOOST_LIB_PATH=C:/deps/boost_1_55_0/stage/lib
+BDB_INCLUDE_PATH=C:/deps/db-4.8.30.NC/build_unix
+BDB_LIB_PATH=C:/deps/db-4.8.30.NC/build_unix
+OPENSSL_INCLUDE_PATH=C:/deps/openssl-1.0.1g/include
+OPENSSL_LIB_PATH=C:/deps/openssl-1.0.1g
+MINIUPNPC_INCLUDE_PATH=C:/deps/
+MINIUPNPC_LIB_PATH=C:/deps/miniupnpc
+QRENCODE_INCLUDE_PATH=C:/deps/qrencode-3.4.3
+QRENCODE_LIB_PATH=C:/deps/qrencode-3.4.3/.libs
+
+
+Comment out genleveldb.commands for win32
+Code:
+
+    LIBS += -lshlwapi
+    #genleveldb.commands = cd $$PWD/src/leveldb && CC=$$QMAKE_CC CXX=$$QMAKE_CXX TARGET_OS=OS_WINDOWS_CROSSCOMPILE $(MAKE) OPT=\"$$QMAKE_CXXFLAGS $$QMAKE_CXXFLAGS_RELEASE\" libleveldb.a libmemenv.a && $$QMAKE_RANLIB $$PWD/src/leveldb/libleveldb.a && $$QMAKE_RANLIB $$PWD/src/leveldb/libmemenv.a
+}
+
+
+flags for static build:
+Code:
+
+CONFIG += static
+
+
+Code:
+
+win32:QMAKE_LFLAGS *= -Wl,--large-address-aware -static
+
+
+bitcoin-qt.pro patch:
+Code:
+
+--- bitcoin-qt.pro	Thu Dec 05 14:11:26 2013
++++ bitcoin-qt.pro	Sat Apr 05 14:51:31 2014
+@@ -7,6 +7,7 @@
+ DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE
+ CONFIG += no_include_pwd
+ CONFIG += thread
++CONFIG += static
+ 
+ # for boost 1.37, add -mt to the boost libraries
+ # use: qmake BOOST_LIB_SUFFIX=-mt
+@@ -17,6 +18,17 @@
+ # Dependency library locations can be customized with:
+ #    BOOST_INCLUDE_PATH, BOOST_LIB_PATH, BDB_INCLUDE_PATH,
+ #    BDB_LIB_PATH, OPENSSL_INCLUDE_PATH and OPENSSL_LIB_PATH respectively
++BOOST_LIB_SUFFIX=-mgw48-mt-s-1_55
++BOOST_INCLUDE_PATH=C:/deps/boost_1_55_0
++BOOST_LIB_PATH=C:/deps/boost_1_55_0/stage/lib
++BDB_INCLUDE_PATH=C:/deps/db-4.8.30.NC/build_unix
++BDB_LIB_PATH=C:/deps/db-4.8.30.NC/build_unix
++OPENSSL_INCLUDE_PATH=C:/deps/openssl-1.0.1g/include
++OPENSSL_LIB_PATH=C:/deps/openssl-1.0.1g
++MINIUPNPC_INCLUDE_PATH=C:/deps/
++MINIUPNPC_LIB_PATH=C:/deps/miniupnpc
++QRENCODE_INCLUDE_PATH=C:/deps/qrencode-3.4.3
++QRENCODE_LIB_PATH=C:/deps/qrencode-3.4.3/.libs
+ 
+ OBJECTS_DIR = build
+ MOC_DIR = build
+@@ -47,7 +59,7 @@
+ # for extra security on Windows: enable ASLR and DEP via GCC linker flags
+ win32:QMAKE_LFLAGS *= -Wl,--dynamicbase -Wl,--nxcompat
+ # on Windows: enable GCC large address aware linker flag
+-win32:QMAKE_LFLAGS *= -Wl,--large-address-aware
++win32:QMAKE_LFLAGS *= -Wl,--large-address-aware -static
+ 
+ # use: qmake "USE_QRCODE=1"
+ # libqrencode (http://fukuchi.org/works/qrencode/index.en.html) must be installed for support
+@@ -109,7 +121,7 @@
+         QMAKE_RANLIB = $$replace(QMAKE_STRIP, strip, ranlib)
+     }
+     LIBS += -lshlwapi
+-    genleveldb.commands = cd $$PWD/src/leveldb && CC=$$QMAKE_CC CXX=$$QMAKE_CXX TARGET_OS=OS_WINDOWS_CROSSCOMPILE $(MAKE) OPT=\"$$QMAKE_CXXFLAGS $$QMAKE_CXXFLAGS_RELEASE\" libleveldb.a libmemenv.a && $$QMAKE_RANLIB $$PWD/src/leveldb/libleveldb.a && $$QMAKE_RANLIB $$PWD/src/leveldb/libmemenv.a
++    #genleveldb.commands = cd $$PWD/src/leveldb && CC=$$QMAKE_CC CXX=$$QMAKE_CXX TARGET_OS=OS_WINDOWS_CROSSCOMPILE $(MAKE) OPT=\"$$QMAKE_CXXFLAGS $$QMAKE_CXXFLAGS_RELEASE\" libleveldb.a libmemenv.a && $$QMAKE_RANLIB $$PWD/src/leveldb/libleveldb.a && $$QMAKE_RANLIB $$PWD/src/leveldb/libmemenv.a
+ }
+ genleveldb.target = $$PWD/src/leveldb/libleveldb.a
+ genleveldb.depends = FORCE
+
+
+From a windows command prompt configure and make:
+Code:
+
+set PATH=%PATH%;C:\Qt\4.8.5\bin
+cd C:\bitcoin-0.8.6\
+qmake "USE_QRCODE=1" "USE_UPNP=1" "USE_IPV6=1" bitcoin-qt.pro
+mingw32-make -f Makefile.Release
+
+
+
+
+
+
+Additional notes for Bitcoin-qt 0.8.6 with qt5
+Download and unpack Qt base and tools sources:
+http://download.qt-project.org/official_releases/qt/5.2/5.2.1/submodules/qtbase-opensource-src-5.2.1.7z
+http://download.qt-project.org/official_releases/qt/5.2/5.2.1/submodules/qttools-opensource-src-5.2.1.7z
+
+From a windows command prompt configure and make:
+Code:
+
+cd C:\Qt\5.2.1
+configure.bat -release -opensource -confirm-license -static -make libs -no-sql-sqlite -no-opengl -qt-zlib -qt-pcre -no-icu -no-gif -qt-libpng -qt-libjpeg -no-angle -no-vcproj -no-openssl -no-dbus -no-audio-backend -no-wmf-backend -no-qml-debug
+mingw32-make
+
+
+then
+
+Code:
+
+set PATH=%PATH%;C:\Qt\5.2.1\bin
+cd C:\Qt\qttools-opensource-src-5.2.1
+qmake qttools.pro
+mingw32-make
+
+
+
+Edit C:\bitcoin-0.8.6\bitcoin-qt.pro with your favourite text editor and add qt widgets
+Code:
+
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+
+dependency library locations:
+Code:
+
+# Dependency library locations can be customized with:
+#    BOOST_INCLUDE_PATH, BOOST_LIB_PATH, BDB_INCLUDE_PATH,
+#    BDB_LIB_PATH, OPENSSL_INCLUDE_PATH and OPENSSL_LIB_PATH respectively
+
+BOOST_LIB_SUFFIX=-mgw48-mt-s-1_55
+BOOST_INCLUDE_PATH=C:/deps/boost_1_55_0
+BOOST_LIB_PATH=C:/deps/boost_1_55_0/stage/lib
+BDB_INCLUDE_PATH=C:/deps/db-4.8.30.NC/build_unix
+BDB_LIB_PATH=C:/deps/db-4.8.30.NC/build_unix
+OPENSSL_INCLUDE_PATH=C:/deps/openssl-1.0.1g/include
+OPENSSL_LIB_PATH=C:/deps/openssl-1.0.1g
+MINIUPNPC_INCLUDE_PATH=C:/deps/
+MINIUPNPC_LIB_PATH=C:/deps/miniupnpc
+QRENCODE_INCLUDE_PATH=C:/deps/qrencode-3.4.3
+QRENCODE_LIB_PATH=C:/deps/qrencode-3.4.3/.libs
+
+
+Comment out genleveldb.commands for win32
+Code:
+
+    LIBS += -lshlwapi
+    #genleveldb.commands = cd $$PWD/src/leveldb && CC=$$QMAKE_CC CXX=$$QMAKE_CXX TARGET_OS=OS_WINDOWS_CROSSCOMPILE $(MAKE) OPT=\"$$QMAKE_CXXFLAGS $$QMAKE_CXXFLAGS_RELEASE\" libleveldb.a libmemenv.a && $$QMAKE_RANLIB $$PWD/src/leveldb/libleveldb.a && $$QMAKE_RANLIB $$PWD/src/leveldb/libmemenv.a
+}
+
+
+flags for static build:
+Code:
+
+CONFIG += static
+
+
+Code:
+
+win32:QMAKE_LFLAGS *= -Wl,--large-address-aware -static
+
+
+
+Bitcoin 0.8.6 will need some patches in order to compile with Qt5:
+Remove #define loop from util.h and replace loop with while (true) in
+src/bitcoinrpc.cpp
+src/main.cpp
+src/net.cpp
+src/script.cpp
+src/util.cpp
+src/wallet.cpp
+src/walletdb.cpp
+see: https://github.com/bitcoin/bitcoin/commit/8351d55cd3955c95c5e3fe065a456db08cc8a559
+
+Qt5 compatibility. #if QT_VERSION < 0x050000 ... in
+src/qt/addressbookpage.cpp
+src/qt/bitcoin.cpp
+src/qt/bitcoingui.cpp
+src/qt/guiutil.cpp
+src/qt/paymentserver.cpp
+src/qt/qrcodedialog.cpp
+src/qt/rpcconsole.cpp
+src/qt/sendcoinsdialog.cpp
+src/qt/transactionview.cpp
+src/qt/walletview.cpp
+see: https://github.com/bitcoin/bitcoin/commit/25c0cce7fb494fcb871d134e28b26504d30e34d3
+http://qt-project.org/doc/qt-5.0/qtdoc/sourcebreaks.html
+http://qt-project.org/wiki/Transition_from_Qt_4.x_to_Qt5
+
+use -openssl-linked instead of -openssl (see src\network\ssl\qsslsocket_openssl_symbols.cpp for more info),
+do not compile shared libraries when building dependencies,
+libpng 1.6.10.
